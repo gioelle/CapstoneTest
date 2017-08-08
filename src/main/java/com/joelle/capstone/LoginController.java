@@ -1,12 +1,14 @@
 package com.joelle.capstone;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.joelle.models.User;
+import com.joelle.entity.User;
+import com.joelle.service.PersonService;
 
 @Controller
 public class LoginController {
@@ -15,7 +17,9 @@ public class LoginController {
 //        model.addAttribute("msg", "Please Enter Your Login Details");
 //        return "login.jsp";
 //    }
- 
+	@Autowired
+	PersonService personService;
+	
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public String submit(Model model, @ModelAttribute("loginBean") LoginBean loginBean) {
     	
@@ -43,10 +47,12 @@ public class LoginController {
         return "about";
     }
     
-    @RequestMapping(value = "/RegistrationServlet", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String submit(Model model,
     		@ModelAttribute("user") User user) {
     	if(user != null) {
+    		personService.save(user);
+    		model.addAttribute("u", user);
     		return "home";
     	} else {
     		return "about";

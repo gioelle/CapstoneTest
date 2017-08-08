@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.joelle.models.User;
+import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 import com.joelle.service.SendMail;
 
@@ -75,7 +75,7 @@ public class HomeController {
 			model.addAttribute("loginError", "username or password invalid");
 			return "about";
 		} else {
-			session.setAttribute("loggedInUser", u);
+			session.setAttribute("u", u);
 			return "home";
 		}
 		

@@ -1,4 +1,4 @@
-package com.joelle.models;
+package com.joelle.entity;
 
 
 import java.util.ArrayList;
@@ -14,22 +14,31 @@ public class User {
 	@Id
 	@Column(name="email")
 	private String email;
+	
 	@Column(name="last_name")
 	private String firstName;
+	
 	@Column(name="first_name")
 	private String lastName;
+	
 	@Column(name="password")
 	private String password;
+	
 	@Column(name="profile_pic")
 	private String profilePic; 
+	
 	@Column(name="swaPointsBalance")
 	private int swaPointsBalance;
+	
 	@Column(name="rating")
 	private double rating;
+	
 	//How to map to these?
 	@Transient
 	private Address address;
+	@Transient
 	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();	
+	@Transient
 	private ArrayList<Posting> postings = new ArrayList<Posting>();
 	
 	

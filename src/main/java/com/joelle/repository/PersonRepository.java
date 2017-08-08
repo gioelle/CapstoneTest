@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.joelle.models.User;
+import com.joelle.entity.User;
 
 @Repository
 public interface PersonRepository extends JpaRepository<User, String> {
@@ -13,3 +13,4 @@ public interface PersonRepository extends JpaRepository<User, String> {
 	public User login(@Param("email")String email, @Param("password")String password);
 	
 }
+

@@ -1,4 +1,4 @@
-package com.joelle.models;
+package com.joelle.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

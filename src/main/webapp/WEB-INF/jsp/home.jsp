@@ -12,11 +12,11 @@
 <title>SwaProfile</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/home/vendor/bootstrap/css/bootstrap.min.css"
+<link href="home/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="resources/home/vendor/font-awesome/css/font-awesome.min.css"
+<link href="home/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
@@ -26,11 +26,11 @@
 	rel='stylesheet' type='text/css'>
 
 <!-- Plugin CSS -->
-<link href="resources/home/vendor/magnific-popup/magnific-popup.css"
+<link href="home/vendor/magnific-popup/magnific-popup.css"
 	rel="stylesheet">
 
 <!-- Theme CSS -->
-<link href="resources/home/css/creative.css" rel="stylesheet">
+<link href="home/css/creative.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

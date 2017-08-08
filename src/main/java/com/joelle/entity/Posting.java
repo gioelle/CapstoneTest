@@ -1,4 +1,4 @@
-package com.joelle.models;
+package com.joelle.entity;
 
 import java.sql.Timestamp;
 

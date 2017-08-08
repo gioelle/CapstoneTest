@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class DatabaseConfig {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder, DataSource dataSource) {
-		return builder.dataSource(dataSource).packages("com.joelle.models").build();
+		return builder.dataSource(dataSource).packages("com.joelle.entity").build();
 	}
 	
 	@Bean

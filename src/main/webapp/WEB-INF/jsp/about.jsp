@@ -14,12 +14,12 @@
 <title>SwaProcity</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="resources/index/vendor/bootstrap/css/bootstrap.min.css"
+<link href="index/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link
-	href="resources/index/vendor/font-awesome/css/font-awesome.min.css"
+	href="index/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <link
@@ -30,12 +30,11 @@
 	rel='stylesheet' type='text/css'>
 
 <!-- Plugin CSS -->
-<link
-	href="resources/index/vendor/magnific-popup/magnific-popup.css"
+<link href="index/vendor/magnific-popup/magnific-popup.css"
 	rel="stylesheet">
 
 <!-- Theme CSS -->
-<link href="../resources/index/css/creative.css" rel="stylesheet">
+<link href="index/css/creative.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,8 +66,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="page-scroll" href="#about">About</a></li>
 					<li><a class="page-scroll" href="#why">Why SwaP?</a></li>
-					<li><a class="page-scroll" href="#register">Login/Sign Up</a>
-					</li>
+					<li><a class="page-scroll" href="#register">Login/Sign Up</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
 				</ul>
 			</div>
@@ -123,7 +121,7 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading">What is SwaProcity?</h2>
-					<p class="text-muted">SwaProcity is a virtual currency of local
+					<p class="text-muted">SwaProcity is a virtual currency for local
 						barter of items, services, and resources. It is what you make it.</p>
 					<hr class="primary">
 				</div>
@@ -151,7 +149,7 @@
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="service-box">
 						<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-						<h3>Your Neighborhood is Talented.</h3>
+						<h3>Your Neighborhood is Talented</h3>
 						<p class="text-muted">Your neighbor's skill set compliments
 							your own, get their help on that new firepit or help them put a
 							new roof on.</p>
@@ -169,7 +167,7 @@
 		</div>
 	</section>
 
-	<section id="register">
+	<section id="register" class="bg-dark">
 		<aside class="bg-dark">
 			<div class="container text-center">
 				<div class="call-to-action">
@@ -259,7 +257,7 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Let's Get In Touch!</h2>
-					<img src="resources/index/img/Reciprocity.jpg"
+					<img src="index/img/Reciprocity.jpg"
 						class="img-responsive" style="max-width: 75%; margin: auto" alt="">
 					<hr class="primary">
 					<p>Have questions, suggestions, or requests?</p>

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.joelle.entity.User;
 import com.joelle.repository.PersonRepository;
-import com.joelle.models.User;
 
 @Service
 public class PersonService {
