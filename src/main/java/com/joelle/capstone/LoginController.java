@@ -20,32 +20,6 @@ public class LoginController {
 	@Autowired
 	PersonService personService;
 	
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String submit(Model model, @ModelAttribute("loginBean") LoginBean loginBean) {
-    	
-    	System.out.println("inside loginbean" + loginBean.getUserName() + loginBean.getPassword());
-    	//Checks that the loginbean isn't empty, that username and password aren't empty
-        if (loginBean != null && loginBean.getUserName() != null & loginBean.getPassword() != null) {
-            if (loginBean.getUserName().equals("user@user.com") && loginBean.getPassword().equals("pass")) {
-            	//Make a method call to DAO to get the user/account model object.
-            	
-            	User user = new User(); 
-            	user.setFirstName("Joelle");
-            	user.setPostings(null);
-            	user.setTransactions(null);
-            	user.setSwaPointsBalance(51);
-          // 	user.setPostings(//userservice.getPostingList());
-            	//userService.find(loginBean.getUserName(), loginBean.getPassword())
-            //	user.setTransactions(userService.getTransaction(user.getEmail()));
-            	model.addAttribute("u", user);
-                return "home";
-            } else {
-                model.addAttribute("error", "Invalid Details");
-                return "about";
-            }
-        }
-        return "about";
-    }
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String submit(Model model,

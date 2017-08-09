@@ -1,5 +1,7 @@
 package com.joelle.service;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -21,9 +23,10 @@ public class PostingService {
 	@Autowired 
 	private PostRepository postRepository;
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
-	public Posting getAllPosts() {
-		return (Posting) entityManager.createNativeQuery(getAllPosts, Posting.class);
+	public ArrayList<Posting> getAllPosts() {
+		return (ArrayList<Posting>) entityManager.createNativeQuery(getAllPosts, Posting.class).getResultList();
 	}
 	
 	@Transactional

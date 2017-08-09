@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import org.hibernate.annotations.CreationTimestamp;
+
 
 @Entity
 @Table(name="post")
@@ -20,6 +22,7 @@ public class Posting {
 	private long id;
 	@Column(name="email")
 	private String email;
+	@CreationTimestamp
 	@Column(name="created_date")
 	private Timestamp createdDate;
 	@Column(name="type")
@@ -32,16 +35,42 @@ public class Posting {
 	private String description;
 	@Column(name="instances")
 	private int instances;
-	//@OneToMany
-	@Transient
-	private ImageFiles imageFiles;
+	@Column(name="picture")
+	private String picture;
+	
+	@OneToOne
+	@JoinColumn(name="email", insertable=false, updatable=false)
+	private User user;
 	
 	//private ArrayList<ImageFiles> images = new ArrayList<ImageFiles>();
 	
+	
+
+
 	//default constructor
 	public Posting () {}
 	
 	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public String getPicture() {
+		return picture;
+	}
+
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
@@ -104,14 +133,4 @@ public class Posting {
 		this.createdDate = createdDate;
 	}
 
-
-	public ImageFiles getImageFiles() {
-		return imageFiles;
-	}
-
-
-	public void setImageFiles(ImageFiles imageFiles) {
-		this.imageFiles = imageFiles;
-	}
-	
 }

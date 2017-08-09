@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,12 +83,12 @@
 				<h3>
 					<b>How would you like to invest in your community today?</b>
 				</h3>
-				<a href="#post" class="btn btn-primary btn-xl page-scroll">New post!</a>
-				<br> <br>
+				<a href="#post" class="btn btn-primary btn-xl page-scroll">New
+					post!</a> <br> <br>
 				<form class="huge-search--search-home" action="search" method="POST">
 					<input type="search" name="term" value="" autocomplete="off"
-						class="js-term" placeholder="Search Postings"/> <br> <br>
-					<button type="submit" class="btn btn-primary btn-xl page-scroll" >Search!</button>
+						class="js-term" placeholder="Search Postings" /> <br> <br>
+					<button type="submit" class="btn btn-primary btn-xl page-scroll">Search!</button>
 				</form>
 
 			</div>
@@ -118,20 +118,20 @@
 									<td>${attribute.title}</td>
 									<td>${attribute.value}</td>
 									<td>${attribute.instances}</td>
-									<td><a href="#">Edit</a> / 
-									<a href="#">Delete</a></td>
+									<td><a href="#">Edit</a> / <a href="#">Delete</a></td>
 								</tr>
 							</c:forEach>
 						</c:if>
 					</table>
 					<br> <br> <a href="#post"
-						class="page-scroll btn btn-default btn-xl sr-button">Post Something New</a>
+						class="page-scroll btn btn-default btn-xl sr-button">Post
+						Something New</a>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="services" style="padding: 50px; background-color:#faf6d0">
+	<section id="services" style="padding: 50px; background-color: #faf6d0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -207,19 +207,26 @@
 		<aside class="bg-dark" style="padding: 50px; height: 700px">
 			<h1 style="align: center; color: #f05f40">SwaPosting</h1>
 			<div class="bg-dark" style="width: 100%">
-				<form action="CreatePosting" method="POST"
+				<form action="CreatePosting" method="POST"  enctype="multipart/form-data"
 					style="align: center; Width: 40%; float: left; padding-right: 50px">
 					<h3>Create a new post:</h3>
-					<input type="radio" name="type" value="item" id="type" /> <i
-						class="fa fa-4x fa-diamond text-primary sr-icons"
-						style="font-size: 125%"></i> <label for="item">Item</label> <br>
-					<input type="radio" name="type" value="service" id="type" /> <i
-						class="fa fa-4x fa-newspaper-o text-primary sr-icons"
-						style="font-size: 125%"></i> <label for="service">Service</label>
-					<br> <input type="radio" name="type" value="resource"
-						id="type" /> <i
-						class="fa fa-4x fa-paper-plane text-primary sr-icons"
-						style="font-size: 125%"></i> <label for="resource">Resource</label>
+					<div class="form-group">
+						<input type="hidden" class="form-control" value="${u.email}" name="email" id="email" placeholder="email"/>
+					</div>
+					<input type="radio" name="type" value="item" id="type" />
+					<i class="fa fa-4x fa-diamond text-primary sr-icons"
+						style="font-size: 125%"></i>
+					<label for="item">Item</label>
+					<br>
+					<input type="radio" name="type" value="service" id="type" />
+					<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"
+						style="font-size: 125%"></i>
+					<label for="service">Service</label>
+					<br>
+					<input type="radio" name="type" value="resource" id="type" />
+					<i class="fa fa-4x fa-paper-plane text-primary sr-icons"
+						style="font-size: 125%"></i>
+					<label for="resource">Resource</label>
 					<br>
 
 					<div class="form-group">
@@ -235,18 +242,19 @@
 						<label for="value">Value</label> <input type="text"
 							class="form-control" name="value" id="value" placeholder="Value">
 					</div>
-
+					<div class="form-group">
+						<label for="instances">How Many?</label> <input type="text"
+							class="form-control" name="instances" id="instances"
+							placeholder="If this is a service/resource, enter 1000">
+					</div>
 					<div class="form-group">
 						<label for="photo">Photo (please upload at least one
 							quality photo)</label> <input type="file" class="form-control"
-							name="photo" id="photo">
-					</div>
-					<div class="form-group">
-						<label for="password">Photo</label> <input type="file"
-							class="form-control" name="photo" id="photo">
+							name="file" id="photo">
 					</div>
 					<button type="submit" class="btn btn-default">POST!</button>
 				</form>
+
 				<div class="container" style="float: right; width: 60%">
 					<h3>What should I post?</h3>
 					<br> <i class="fa fa-4x fa-diamond text-primary sr-icons"
@@ -259,8 +267,7 @@
 						you're searching for - someone might just be inspired to pass
 						something on to you.
 					</p>
-					<br>
-					<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"
+					<br> <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"
 						style="font-size: 125%"></i><br>
 					<p>
 						Post any skills you have or are in need of. Do you happen to be a
@@ -270,8 +277,7 @@
 						your hair done for an upcoming event? Post a request for help
 						here.
 					</p>
-					<br>
-					<i class="fa fa-4x fa-paper-plane text-primary sr-icons"
+					<br> <i class="fa fa-4x fa-paper-plane text-primary sr-icons"
 						style="font-size: 125%"></i><br>
 					<p>
 						Do you have a garage full of tools? A beautiful space that someone

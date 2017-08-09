@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Shop Homepage - Start Bootstrap Template</title>
+<title>SwaProcity - Browse</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="postings/css/bootstrap.min.css" rel="stylesheet">
@@ -112,183 +113,58 @@
 
 				</div>
 				<c:forEach var="post" items="${post}">
+					<c:if test="${post.instances>0}">
+			                 Display post here.
 					<!--  this is just one post message from here....  -->
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="well">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="well">
+									<p>
+										<!-- because we joined the post and person tables  -->
+										<c:out value="${post.user.firstName}" />
+									</p>
+									<img src="${loggedInUser.profilePic}"
+										class="img-circle" height="55" width="55" alt="Avatar">
+								</div>
+							</div>
+							<div class="col-sm-9">
+								<div class="well">
+									<p>
+										<c:out value="${post.type}" />
+									</p>
+									<p>
+										<c:out value="${post.title}" />
+									</p>
+									<p>
+										<c:out value="${post.description}" />
+									</p>
+									<p>
+									<img src="${post.picture}" class="img-circle"
+										height="55" width="55" alt="Posting Image">
+									</p>
+								</div>
+								<div class="well">
 								<p>
-									<!-- because we joined the post and person tables  -->
-									<c:out value="${post.person.firstName}" />
-								</p>
-								<img src="${loggedInUser.profilePic}" class="img-circle"
-									height="55" width="55" alt="Avatar">
+										<c:out value="${post.value}" />
+									</p>
+									<p>
+										<!-- because we joined the post and person tables  -->
+										<c:out value="${post.user.firstName}" />
+									</p>
+									<img src="${post.user.profilePic}" class="img-circle"
+										height="55" width="55" alt="Avatar">
+									<c:out value="${post.user.rating}" />
+								</div>
+								<button type="button" class="btn btn-default btn-sm">
+									<span class="glyphicon glyphicon-airplane"></span> Swap!
+								</button>
 							</div>
 						</div>
-						<div class="col-sm-9">
-							<div class="well">
-								<p>
-									<c:out value="${post.message}" />
-								</p>
-							</div>
-							<button type="button" class="btn btn-default btn-sm">
-								<span class="glyphicon glyphicon-thumbs-up"></span> Like
-							</button>
-						</div>
-					</div>
-					<!--  to here -->
+						<!--  to here -->
+					</c:if>
 				</c:forEach>
-
-				<div class="row">
-
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="Posting1.Image">
-							<div class="caption">
-								<h4 class="pull-right">Posting1.Value</h4>
-								<h4>
-									<a href="#">Posting1.Title</a>
-								</h4>
-								<p>Posting1.Description</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">User1.Ratings</p>
-								<p>
-									<!-- Method of translating rating to stars: -->
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="">
-							<div class="caption">
-								<h4 class="pull-right">$64.99</h4>
-								<h4>
-									<a href="#">Second Product</a>
-								</h4>
-								<p>This is a short description. Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit.</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">12 reviews</p>
-								<p>
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star-empty"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="">
-							<div class="caption">
-								<h4 class="pull-right">$74.99</h4>
-								<h4>
-									<a href="#">Third Product</a>
-								</h4>
-								<p>This is a short description. Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit.</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">31 reviews</p>
-								<p>
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star-empty"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="">
-							<div class="caption">
-								<h4 class="pull-right">$84.99</h4>
-								<h4>
-									<a href="#">Fourth Product</a>
-								</h4>
-								<p>This is a short description. Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit.</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">6 reviews</p>
-								<p>
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star-empty"></span> <span
-										class="glyphicon glyphicon-star-empty"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="">
-							<div class="caption">
-								<h4 class="pull-right">$94.99</h4>
-								<h4>
-									<a href="#">Fifth Product</a>
-								</h4>
-								<p>This is a short description. Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit.</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">18 reviews</p>
-								<p>
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star-empty"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4 col-lg-4 col-md-4">
-						<div class="thumbnail">
-							<img src="http://placehold.it/320x150" alt="">
-							<div class="caption">
-								<h4 class="pull-right">$94.99</h4>
-								<h4>
-									<a href="#">Sixth Product</a>
-								</h4>
-								<p>This is a short description. Lorem ipsum dolor sit amet,
-									consectetur adipiscing elit.</p>
-							</div>
-							<div class="ratings">
-								<p class="pull-right">18 reviews</p>
-								<p>
-									<span class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star"></span> <span
-										class="glyphicon glyphicon-star-empty"></span>
-								</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-
 			</div>
-
 		</div>
-
 	</div>
 	<!-- /.container -->
 
@@ -300,7 +176,7 @@
 		<footer>
 			<div class="row">
 				<div class="col-lg-12">
-					<p>Copyright &copy; Your Website 2014</p>
+					<p>Copyright &copy; SwaProcity 2017</p>
 				</div>
 			</div>
 		</footer>

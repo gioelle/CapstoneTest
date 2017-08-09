@@ -1,9 +1,11 @@
 package com.joelle.capstone;
 
+import java.io.File;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.joelle.entity.Posting;
 import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 import com.joelle.service.SendMail;
@@ -79,6 +84,33 @@ public class HomeController {
 			return "home";
 		}
 		
+	}
+	
+
+//	private void addUserPost(Model model, String email) {
+//		model.addAttribute("post", new Posting());
+//		model.addAttribute("posts", postingService.findMyPost(email));
+//	}
+	
+	@RequestMapping(value="/upload", method=RequestMethod.POST)
+	public String uploadFileHandler(@RequestParam("file") MultipartFile file, HttpSession session, Model model) {
+		User u = (User) session.getAttribute("loggedInUser");
+		try {
+			if(!file.isEmpty()) {
+				String fileName = file.getOriginalFilename();
+				String basePath = "C:\\Users\\Joelle\\Workspace\\SwaProcity\\src\\main\\resources\\static\\img";
+				String uploadPath = basePath+"\\"+u.getEmail()+"\\"+fileName;
+				String profilePath = "/img/" + u.getEmail() + "/" + fileName;
+				File fileToUpload = new File(uploadPath);
+				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
+				u.setProfilePic(profilePath);
+				personService.save(u);
+			}
+		}catch(Exception e) {
+
+		}
+//		this.addUserPost(model, u.getEmail());
+		return "home";
 	}
 }
 	
