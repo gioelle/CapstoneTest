@@ -1,4 +1,6 @@
+<%@page import="com.joelle.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%User u = (User)session.getAttribute("u"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content="">
+<meta name="author" content="Joelle Fronzaglio">
 
 <title>SwaProfile</title>
 
@@ -61,7 +63,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="page-scroll" href="#currentPosts">My Posts</a></li>
-					<li><a class="page-scroll" href="#about">About</a></li>
+					<li><a class="page-scroll" href="about">About</a></li>
 					<li><a class="page-scroll" href="#services">Services</a></li>
 					<li><a class="page-scroll" href="#logout">Log Out</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
@@ -101,10 +103,11 @@
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Your Current Postings</h2>
 					<table style="" class="table table-hover">
-						<c:if test="${postings = null}">
+						<c:choose>
+							<c:when test="${empty post}">
 							You don't currently have anything posted.
-						</c:if>
-						<c:if test="${postings!= null}">
+							</c:when>
+							<c:otherwise>
 							<tr>
 								<th>Type</th>
 								<th>Title</th>
@@ -112,16 +115,18 @@
 								<th>Instances Remaining</th>
 								<th>Edit/Delete</th>
 							</tr>
-							<c:forEach items="${u.postings}" var="attribute">
-								<tr>
-									<td>${attribute.type}</td>
-									<td>${attribute.title}</td>
-									<td>${attribute.value}</td>
-									<td>${attribute.instances}</td>
+							<c:forEach items="${post}" var="postedItem">
+								
+									<tr>
+									<td><c:out value="${postedItem}"></c:out></td>
+									
 									<td><a href="#">Edit</a> / <a href="#">Delete</a></td>
 								</tr>
+								
+								
 							</c:forEach>
-						</c:if>
+						</c:otherwise>
+						</c:choose>
 					</table>
 					<br> <br> <a href="#post"
 						class="page-scroll btn btn-default btn-xl sr-button">Post

@@ -1,6 +1,7 @@
 package com.joelle.capstone;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -30,7 +31,7 @@ import com.joelle.service.SendMail;
 public class HomeController {
 	@Autowired
 	private PersonService personService;
-//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private SendMail emailService;
 	private final static String newUserMessage = "We're so happy you've joined our community. To learn more please visit our website.";
@@ -40,35 +41,29 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		String formattedDate = dateFormat.format(date);
-//		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("userLogin", new User());
-		model.addAttribute("newUser", new User());
+			model.addAttribute("userLogin", new User());
 		return "about";
 	}
-	
+
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public ModelAndView signup(Model model) {	
 		return new ModelAndView("signup", "newUser", new User());
 	}
-	
+
 	//Do error handling try catch here to avoid problems with internet on demo day
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public ModelAndView handleSignup(Model model, @ModelAttribute("newUser") User newPerson) {
 		this.personService.save(newPerson);
 		emailService.sendMail(newPerson.getEmail(), newUserSubject,  newUserMessage);
-//		System.out.println(newPerson.getEmail() + newUserSubject);	
+		//		System.out.println(newPerson.getEmail() + newUserSubject);	
 		return login(model);
 	}
-	
+
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public ModelAndView login(Model model) {
 		return new ModelAndView("home", "userLogin", new User());
 	}
-	
+
 	@RequestMapping("/") //use spring to create a servlet for your index page --- if user doesn't enter a path this is the default
 	public String index() {
 		return "about"; //tell spring to find and display the index page
@@ -80,18 +75,25 @@ public class HomeController {
 			model.addAttribute("loginError", "username or password invalid");
 			return "about";
 		} else {
+					
+			model.addAttribute("post", personService.getUsersPosts(userLogin.getEmail()));
+			
 			session.setAttribute("u", u);
 			return "home";
 		}
-		
-	}
-	
 
-//	private void addUserPost(Model model, String email) {
-//		model.addAttribute("post", new Posting());
-//		model.addAttribute("posts", postingService.findMyPost(email));
-//	}
-	
+	}
+
+	@RequestMapping(value="/home", method=RequestMethod.GET)
+	public ModelAndView toHome(Model model, @ModelAttribute("userLogin") User userLogin) {
+		return new ModelAndView("home", "userLogin", userLogin );
+	}
+
+	//	private void addUserPost(Model model, String email) {
+	//		model.addAttribute("post", new Posting());
+	//		model.addAttribute("posts", postingService.findMyPost(email));
+	//	}
+
 	@RequestMapping(value="/upload", method=RequestMethod.POST)
 	public String uploadFileHandler(@RequestParam("file") MultipartFile file, HttpSession session, Model model) {
 		User u = (User) session.getAttribute("loggedInUser");
@@ -109,9 +111,16 @@ public class HomeController {
 		}catch(Exception e) {
 
 		}
-//		this.addUserPost(model, u.getEmail());
+		//		this.addUserPost(model, u.getEmail());
 		return "home";
 	}
+
+	@RequestMapping(value="/about", method=RequestMethod.GET)
+	public ModelAndView toAbout(Model model, @ModelAttribute("userLogin") User userLogin) {
+		System.out.println("Logged in User: "+userLogin.getEmail());
+		return new ModelAndView("about", "userLogin", userLogin );
+	}
+
 }
-	
+
 

@@ -17,7 +17,6 @@
 
 <!-- Custom CSS -->
 <link href="postings/css/shop-homepage.css" rel="stylesheet">
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -30,7 +29,7 @@
 <body>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"style="background-color:#002f34">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -48,11 +47,11 @@
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1" style="float: right">
+				id="bs-example-navbar-collapse-1" style="float: right;">
 				<ul class="nav navbar-nav">
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">Log Out</a></li>
+					<li><a href="home">Profile Home</a>
+					<li><a href="about">About</a></li>
+					<li><a href="#logout">Log Out</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -66,11 +65,13 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead">SwaProcity</p>
+				<p class="lead" style="color: white">SwaProcity</p>
 				<div class="list-group">
-					<a href="#" class="list-group-item">Items</a> <a href="#"
-						class="list-group-item">Services</a> <a href="#"
-						class="list-group-item">Resources</a>
+					<a href="item" class="list-group-item">Items</a> 
+					<a href="service" class="list-group-item">Services</a> 
+					<a href="resource"	class="list-group-item">Resources</a>
+					<a href="allPosts"	class="list-group-item">All</a>
+					
 				</div>
 			</div>
 
@@ -114,52 +115,52 @@
 				</div>
 				<c:forEach var="post" items="${post}">
 					<c:if test="${post.instances>0}">
-			                 Display post here.
-					<!--  this is just one post message from here....  -->
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="well">
+						<!--  this is just one post message from here....  -->
+						<!--<div class="row"> -->
+						<div class="col-sm-5">
+							<div class="well" style="height: 350px; margin-bottom: 5px; overflow:auto;" id="postHolder">
+								<div>
+								<div>
 									<p>
-										<!-- because we joined the post and person tables  -->
-										<c:out value="${post.user.firstName}" />
+										Title: <span style="font-weight: bold"><c:out
+												value="${post.title}" /></span>
 									</p>
-									<img src="${loggedInUser.profilePic}"
-										class="img-circle" height="55" width="55" alt="Avatar">
-								</div>
-							</div>
-							<div class="col-sm-9">
-								<div class="well">
+									<hr style="margin-top: 10px; margin-bottom: 10px">
 									<p>
-										<c:out value="${post.type}" />
+										Type: <span style="font-weight: bold"><c:out
+												value="${post.type}" /></span>
 									</p>
+									<hr style="margin-top: 10px; margin-bottom: 10px">
 									<p>
-										<c:out value="${post.title}" />
-									</p>
-									<p>
-										<c:out value="${post.description}" />
+										Description: <br> <span style="font-weight: bold"><c:out
+												value="${post.description}" /></span>
 									</p>
 									<p>
-									<img src="${post.picture}" class="img-circle"
-										height="55" width="55" alt="Posting Image">
-									</p>
-								</div>
-								<div class="well">
-								<p>
-										<c:out value="${post.value}" />
+										<br> <img src="${post.picture}" height="100%"
+											width="100%" alt="Post Image">
 									</p>
 									<p>
-										<!-- because we joined the post and person tables  -->
-										<c:out value="${post.user.firstName}" />
+										SwaPoints: <span style="font-weight: bold"><c:out
+												value="${post.value}" /></span>
 									</p>
 									<img src="${post.user.profilePic}" class="img-circle"
-										height="55" width="55" alt="Avatar">
-									<c:out value="${post.user.rating}" />
+										height="55" width="55" alt="Avatar"> <br>
+									<p>
+										Posted by: <span style="font-weight: bold"><c:out
+												value="${post.user.firstName}" /></span>
+									</p>
+									User rating: <span style="font-weight: bold"><c:out
+											value="${post.user.rating}" /></span> <br> <br>
 								</div>
-								<button type="button" class="btn btn-default btn-sm">
-									<span class="glyphicon glyphicon-airplane"></span> Swap!
-								</button>
+								</div>
 							</div>
+							<div class="button" style="text-align: center; font: bold; margin-top: 10px; margin-bottom:50px;">
+									<button id="swapButton" type="button" class="btn btn-default btn-sm;" style="button-align: center; height: 1.42857143; font-weight: bold;">
+									Swap!
+									</button>
+								</div>
 						</div>
+						<!-- 	</div> -->
 						<!--  to here -->
 					</c:if>
 				</c:forEach>

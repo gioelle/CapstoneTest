@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.joelle.entity.Posting;
 import com.joelle.entity.User;
+import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
 
 @Controller
@@ -48,6 +49,7 @@ public class PostingController {
 			// TODO add this posting to my user's array list of postings in the database
 			// model.addAttribute( /* how ever i call the posting*/, posting);
 			postingService.save(posting);
+			model.addAttribute(posting);
 			return "home";
 		} else {
 			model.addAttribute("error", "Please enter posting details");
@@ -63,29 +65,27 @@ public class PostingController {
 		return "postings";
 	}
 	
-	
+	@RequestMapping(value="/item", method=RequestMethod.GET)
+	public String getItemPosts(Model model, @ModelAttribute("userLogin") User userLogin) {
+		ArrayList<Posting> posts = postingService.getItemPosts();
+		System.out.println("Item Posts: "+posts.size());
+		model.addAttribute("post", posts);
+		return "postings";
+	}
 
-//	@RequestMapping(value = "/uploadPostImage", method = RequestMethod.POST)
-//	public String uploadPostImageFileHandler(@RequestParam("file") MultipartFile file, HttpSession session,
-//			Model model) {
-//		// TODO change from user to post object
-//		Posting p = (Posting) session.getAttribute("loggedInUser");
-//		try {
-//			if (!file.isEmpty()) {
-//				String fileName = file.getOriginalFilename();
-//				String basePath = "C:\\Users\\Joelle\\Workspace\\SwaProcity\\src\\main\\resources\\static\\img";
-//				String uploadPath = basePath + "\\" + p.getEmail() + "\\" + fileName;
-//				String path = "/img/" + p.getEmail() + "/" + fileName;
-//				File fileToUpload = new File(uploadPath);
-//				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
-//				// TODO fix this too (both lines)
-//				p.setPicture(path);
-//				postingService.save(p);
-//			}
-//		} catch (Exception e) {
-//
-//		}
-//		// this.addUserPost(model, u.getEmail());
-//		return "home";
-//	}
+	@RequestMapping(value="/resource", method=RequestMethod.GET)
+	public String getResourcePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
+		ArrayList<Posting> posts = postingService.getResourcePosts();
+		System.out.println("Resource Posts: "+posts.size());
+		model.addAttribute("post", posts);
+		return "postings";
+	}
+	
+	@RequestMapping(value="/service", method=RequestMethod.GET)
+	public String getServicePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
+		ArrayList<Posting> posts = postingService.getServicePosts();
+		System.out.println("Service Posts: "+posts.size());
+		model.addAttribute("post", posts);
+		return "postings";
+	}
 }

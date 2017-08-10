@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -36,12 +39,8 @@ public class User {
 	//How to map to these?
 	@Transient
 	private Address address;
-	@Transient
-	private ArrayList<Transaction> transactions = new ArrayList<Transaction>();	
-	@Transient
-	private ArrayList<Posting> postings = new ArrayList<Posting>();
 	
-	
+
 	//default constructor
 	public User() {
 		address = new Address();
@@ -114,13 +113,6 @@ public class User {
 		this.swaPointsBalance = swaPointsBalance;
 	}
 
-	public ArrayList<Transaction> getTransactions() {
-		return transactions;
-	}
-
-	public void setTransactions(ArrayList<Transaction> transactions) {
-		this.transactions = transactions;
-	}
 
 	public double getRating() {
 		return rating;
@@ -129,14 +121,5 @@ public class User {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-
-	public ArrayList<Posting> getPostings() {
-		return postings;
-	}
-
-	public void setPostings(ArrayList<Posting> postings) {
-		this.postings = postings;
-	}
-
 
 }

@@ -19,7 +19,10 @@ public class PostingService {
 	@PersistenceContext
 	private EntityManager entityManager;
 	private String getAllPosts = "Select P.* from post P where P.instances>0";
-	
+	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type = 'item'";
+	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type = 'resource'";
+	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type = 'service'";
+
 	@Autowired 
 	private PostRepository postRepository;
 	
@@ -27,6 +30,24 @@ public class PostingService {
 	@Transactional
 	public ArrayList<Posting> getAllPosts() {
 		return (ArrayList<Posting>) entityManager.createNativeQuery(getAllPosts, Posting.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public ArrayList<Posting> getItemPosts() {
+		return (ArrayList<Posting>) entityManager.createNativeQuery(getItemPosts, Posting.class).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public ArrayList<Posting> getResourcePosts() {
+		return (ArrayList<Posting>) entityManager.createNativeQuery(getResourcePosts, Posting.class).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public ArrayList<Posting> getServicePosts() {
+		return (ArrayList<Posting>) entityManager.createNativeQuery(getServicePosts, Posting.class).getResultList();
 	}
 	
 	@Transactional

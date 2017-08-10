@@ -192,7 +192,7 @@
 				<br> <br> <br>
 				<div class="container text-center">
 					<form:form class="container" action="register" method="post"
-						modelAttribute="newUser" style="width:40%">
+						modelAttribute="userLogin" style="width:40%">
 						<h3>Not yet in the club? Sign up here!</h3>
 						<div class="form-group">
 							<form:label path="firstName">First Name</form:label>
