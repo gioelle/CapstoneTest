@@ -31,7 +31,7 @@ public class PersonService {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Posting> getUsersPosts(String email){
-		return (ArrayList<Posting>) entityManager.createNativeQuery(getUsersPosts, User.class).setParameter("email", email).getResultList();
+		System.out.println("user email: " + email);return (ArrayList<Posting>) entityManager.createNativeQuery(getUsersPosts, Posting.class).setParameter("email", email).getResultList();
 	}
 	
 	@Transactional

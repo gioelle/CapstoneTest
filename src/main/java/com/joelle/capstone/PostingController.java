@@ -84,8 +84,15 @@ public class PostingController {
 	@RequestMapping(value="/service", method=RequestMethod.GET)
 	public String getServicePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getServicePosts();
-		System.out.println("Service Posts: "+posts.size());
 		model.addAttribute("post", posts);
+		return "postings";
+	}
+	
+	@RequestMapping(value="/swap", method=RequestMethod.GET)
+	public String processSwap(Model model, @ModelAttribute("postSwap")Posting postSwap) {
+		postSwap=postingService.oneLessInstance();
+		System.out.println("post title and instances: "+postSwap.getTitle()+ " " + postSwap.getInstances());
+		model.addAttribute("post", postSwap);
 		return "postings";
 	}
 }

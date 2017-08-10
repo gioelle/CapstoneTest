@@ -68,6 +68,7 @@ public class HomeController {
 	public String index() {
 		return "about"; //tell spring to find and display the index page
 	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String handleLogin(Model model, @ModelAttribute("userLogin") User userLogin, HttpSession session) {
 		User u = this.personService.login(userLogin.getEmail(), userLogin.getPassword());
@@ -75,8 +76,12 @@ public class HomeController {
 			model.addAttribute("loginError", "username or password invalid");
 			return "about";
 		} else {
-					
-			model.addAttribute("post", personService.getUsersPosts(userLogin.getEmail()));
+			ArrayList<Posting> posts = personService.getUsersPosts(userLogin.getEmail());		
+			System.out.println("size of record: " + posts.size());
+			for (Posting posting : posts) {
+				System.out.println(posting.getType());
+			}
+			model.addAttribute("myUserPost", posts);
 			
 			session.setAttribute("u", u);
 			return "home";

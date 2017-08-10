@@ -18,10 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostingService {
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 	private String getAllPosts = "Select P.* from post P where P.instances>0";
 	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type = 'item'";
 	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type = 'resource'";
 	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type = 'service'";
+	private String reduceInstancesBy1 = "Update P from post P set instance=instances -1 where P.id=:id";
 
 	@Autowired 
 	private PostRepository postRepository;
@@ -48,6 +50,11 @@ public class PostingService {
 	@Transactional
 	public ArrayList<Posting> getServicePosts() {
 		return (ArrayList<Posting>) entityManager.createNativeQuery(getServicePosts, Posting.class).getResultList();
+	}
+	
+	@Transactional
+	public Posting oneLessInstance() {
+		return (Posting)entityManager.createNativeQuery(reduceInstancesBy1, Posting.class).getSingleResult();
 	}
 	
 	@Transactional

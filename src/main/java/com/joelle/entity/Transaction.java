@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +23,7 @@ public class Transaction {
 	@Column(name="value")
 	private int value;
 	@Column(name="user")
-	private String user;
+	private String buyingUser;
 	@Column(name="title")
 	private String title;
 	@Column(name="type") 
@@ -29,6 +31,9 @@ public class Transaction {
 	@Column(name="email")
 	private String email;
 	
+	@OneToOne
+	@JoinColumn(name="email", insertable=false, updatable=false)
+	private User user;
 
 	public String getType() {
 		return type;
@@ -80,16 +85,30 @@ public class Transaction {
 	}
 
 
+	public String getBuyingUser() {
+		return buyingUser;
+	}
+
+
+	public void setBuyingUser(String buyingUser) {
+		this.buyingUser = buyingUser;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	public String toString() {
 		return  "*" + date + "," + value + "," + user;
 	}
 
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
 	public double getValue() {
 		return value;
 	}

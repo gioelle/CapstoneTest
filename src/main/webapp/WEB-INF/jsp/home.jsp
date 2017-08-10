@@ -1,6 +1,8 @@
 <%@page import="com.joelle.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%User u = (User)session.getAttribute("u"); %>
+<%
+	User u = (User) session.getAttribute("u");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +58,7 @@
 				</button>
 				<a class="navbar-brand page-scroll" href="#page-top">My
 					SwaProcity Profile</a>
+
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,6 +81,14 @@
 		<div class="header-content">
 			<div class="header-content-inner">
 				<h1 id="homeHeading">Hello, ${u.firstName}!</h1>
+				<img src="${u.profilePic}" class="img-circle" height="55" width="55"
+					alt=""> <br>
+					<form action="upload">
+				<h6>
+					<input type="file" name="file" id="file" class="inputfile"/>
+					<label for="file">Choose a profile
+						picture</label>
+				</h6></form>
 				<hr>
 				<h3>
 					<b>Your SwaPoints balance is: ${u.swaPointsBalance}</b>
@@ -101,31 +112,32 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
-					<h2 class="section-heading">Your Current Postings</h2>
+					<h2 class="section-heading">Your Current Posts</h2>
 					<table style="" class="table table-hover">
 						<c:choose>
-							<c:when test="${empty post}">
+							<c:when test="${empty myUserPost}">
 							You don't currently have anything posted.
 							</c:when>
 							<c:otherwise>
-							<tr>
-								<th>Type</th>
-								<th>Title</th>
-								<th>Value</th>
-								<th>Instances Remaining</th>
-								<th>Edit/Delete</th>
-							</tr>
-							<c:forEach items="${post}" var="postedItem">
-								
-									<tr>
-									<td><c:out value="${postedItem}"></c:out></td>
-									
-									<td><a href="#">Edit</a> / <a href="#">Delete</a></td>
+								<tr>
+									<th style="text-align: center">Type</th>
+									<th style="text-align: center">Title</th>
+									<th style="text-align: center">Value</th>
+									<th style="text-align: center">Instances Remaining</th>
+									<th style="text-align: center">Change</th>
 								</tr>
-								
-								
-							</c:forEach>
-						</c:otherwise>
+								<c:forEach items="${myUserPost}" var="postedItem">
+
+									<tr>
+										<td><c:out value="${postedItem.type}"></c:out></td>
+										<td><c:out value="${postedItem.title}"></c:out></td>
+										<td><c:out value="${postedItem.value}"></c:out></td>
+										<td><c:out value="${postedItem.instances}"></c:out></td>
+										<td><a href="#"><span style="color: white">Edit
+											</span></a>/<a href="#"><span style="color: white"> Delete</span></a></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
 						</c:choose>
 					</table>
 					<br> <br> <a href="#post"
@@ -136,7 +148,7 @@
 		</div>
 	</section>
 
-	<section id="services" style="padding: 50px; background-color: #faf6d0">
+	<%-- 	<section id="services" style="padding: 50px; background-color: #faf6d0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
@@ -159,79 +171,58 @@
 					<div class="service-box">
 						<p class="text-muted">
 							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}
-						</p>
+							${transaction.value}<br>User ${transaction.user}</p>
+							<c:choose>
+							<c:when test="${empty myUserPost}">
+							You don't have any past transactions.
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<th style="text-align:center">Date</th>
+									<th style="text-align:center">Title</th>
+									<th style="text-align:center">Value</th>
+									<th style="text-align:center">User</th>
+								</tr>
+								<c:forEach items="${myUserPost}" var="postedItem">
+
+									<tr>
+										<td><c:out value="${postedItem.date}"></c:out></td>
+										<td><c:out value="${postedItem.title}"></c:out></td>
+										<td><c:out value="${postedItem.value}"></c:out></td>
+										<td><c:out value="${postedItem.email}"></c:out></td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
+ --%>
 
 	<section id="post" style="background-color: #222">
 		<aside class="bg-dark" style="padding: 50px; height: 700px">
 			<h1 style="align: center; color: #f05f40">SwaPosting</h1>
 			<div class="bg-dark" style="width: 100%">
-				<form action="CreatePosting" method="POST"  enctype="multipart/form-data"
+				<form action="CreatePosting" method="POST"
+					enctype="multipart/form-data"
 					style="align: center; Width: 40%; float: left; padding-right: 50px">
 					<h3>Create a new post:</h3>
 					<div class="form-group">
-						<input type="hidden" class="form-control" value="${u.email}" name="email" id="email" placeholder="email"/>
+						<input type="hidden" class="form-control" value="${u.email}"
+							name="email" id="email" placeholder="email" />
 					</div>
-					<input type="radio" name="type" value="item" id="type" />
-					<i class="fa fa-4x fa-diamond text-primary sr-icons"
-						style="font-size: 125%"></i>
-					<label for="item">Item</label>
-					<br>
-					<input type="radio" name="type" value="service" id="type" />
-					<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"
-						style="font-size: 125%"></i>
-					<label for="service">Service</label>
-					<br>
-					<input type="radio" name="type" value="resource" id="type" />
-					<i class="fa fa-4x fa-paper-plane text-primary sr-icons"
-						style="font-size: 125%"></i>
-					<label for="resource">Resource</label>
+					<input type="radio" name="type" value="item" id="type" /> <i
+						class="fa fa-4x fa-diamond text-primary sr-icons"
+						style="font-size: 125%"></i> <label for="item">Item</label> <br>
+					<input type="radio" name="type" value="service" id="type" /> <i
+						class="fa fa-4x fa-newspaper-o text-primary sr-icons"
+						style="font-size: 125%"></i> <label for="service">Service</label>
+					<br> <input type="radio" name="type" value="resource"
+						id="type" /> <i
+						class="fa fa-4x fa-paper-plane text-primary sr-icons"
+						style="font-size: 125%"></i> <label for="resource">Resource</label>
 					<br>
 
 					<div class="form-group">
