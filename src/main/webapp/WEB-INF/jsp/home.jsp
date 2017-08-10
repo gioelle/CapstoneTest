@@ -1,7 +1,7 @@
 <%@page import="com.joelle.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<% User loggedInUser = (User)session.getAttribute("loggedInUser"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,11 +98,12 @@
 	<header>
 		<div class="header-content">
 			<div class="header-content-inner">
-				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
-				<img src="${userLogin.profilePic}" class="img-circle" height="155px"
+				<h1 id="homeHeading">Hello, ${loggedInUser.firstName}!</h1>
+				<img src="${loggedInUser.profilePic}" class="img-circle" height="155px"
 					width="155px" alt=""> <br>
 				<form action="uploadProfile" method="POST"
 					enctype="multipart/form-data">
+					
 					<h6>
 						<input type="file" name="file" id="file" class="inputfile" /> <label
 							for="file">Choose a profile picture</label>
@@ -111,7 +112,7 @@
 				</form>
 				<hr>
 				<h3>
-					<b>Your SwaPoints balance is: ${userLogin.swaPointsBalance}</b>
+					<b>Your SwaPoints balance is: ${loggedInUser.swaPointsBalance}</b>
 				</h3>
 				<h3>
 					<b>How would you like to invest in your community today?</b>

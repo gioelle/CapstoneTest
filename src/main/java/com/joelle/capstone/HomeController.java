@@ -1,7 +1,9 @@
 package com.joelle.capstone;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.joelle.entity.Posting;
 import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 
@@ -31,29 +34,37 @@ public class HomeController {
 	//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public ModelAndView toHome(Model model, @ModelAttribute("userLogin") User userLogin) {
-		return new ModelAndView("home", "userLogin", userLogin );
+	public String toHome(Model model, @ModelAttribute("userLogin") User userLogin) {
+		model.addAttribute("userLogin", userLogin);
+		return "home";
 	}
 
 	@RequestMapping(value="/uploadProfile", method=RequestMethod.POST)
-	public String uploadFileHandler(@RequestParam("file") MultipartFile file, Model model,@Valid @ModelAttribute ("userLogin") User userLogin ,HttpSession session) {
-			
-		System.out.println("Uploading Profile Pic....!!!!!"+userLogin.getEmail()+model.containsAttribute("userLogin"));
+	public String uploadFileHandler(@RequestParam("file") MultipartFile file, Model model,HttpSession session) {
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		System.out.println("Uploading Profile Pic....!!!!!"+loggedInUser.getEmail());
 		
 		try {
 			if(!file.isEmpty()) {
 				String fileName = file.getOriginalFilename();
 				String basePath = "C:\\Users\\Joelle\\Workspace\\SwaProcity\\src\\main\\resources\\static\\img";
-				String uploadPath = basePath+"\\"+userLogin.getEmail()+"\\"+fileName;
-				String profilePath = "/img/" + userLogin.getEmail() + "/" + fileName;
+				String uploadPath = basePath+"\\"+loggedInUser.getEmail()+"\\"+fileName;
+				String profilePath = "/img/" + loggedInUser.getEmail() + "/" + fileName;
 				File fileToUpload = new File(uploadPath);
 				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
 				
 				System.out.println("Profile Pic path:  "+profilePath);
-				userLogin.setProfilePic(profilePath);
-				model.addAttribute("userLogin",userLogin);
-				personService.save2(userLogin);
+				loggedInUser.setProfilePic(profilePath);
+				session.setAttribute("loggedInUser", loggedInUser);
+				personService.save2(loggedInUser);
 			}
+			
+			ArrayList<Posting> posts = personService.getUsersPosts(loggedInUser.getEmail());		
+			System.out.println("size of record: " + posts.size());
+			for (Posting posting : posts) {
+				System.out.println(posting.getType());
+			}
+			model.addAttribute("myUserPost", posts);
 		}catch(Exception e) {
 
 		}
@@ -61,9 +72,10 @@ public class HomeController {
 	}
 
 	@RequestMapping(value="/about", method=RequestMethod.GET)
-	public ModelAndView toAbout(Model model, @ModelAttribute("userLogin") User userLogin) {
+	public String toAbout(Model model, @ModelAttribute("userLogin") User userLogin) {
 		System.out.println("Logged in User: "+userLogin.getEmail());
-		return new ModelAndView("about", "userLogin", userLogin );
+		model.addAttribute("userLogin", userLogin);
+		return "about";
 	}
 }
 

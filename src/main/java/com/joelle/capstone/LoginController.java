@@ -60,33 +60,30 @@ public class LoginController {
 		return "about";
 	}
 
-	@RequestMapping(value="/signup", method=RequestMethod.GET)
+	/*@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public ModelAndView signup(Model model) {	
 		return new ModelAndView("signup", "newUser", new User());
-	}
+	}*/
 
 	//Do error handling try catch here to avoid problems with internet on demo day
-	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	/*@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public ModelAndView handleSignup(Model model, @ModelAttribute("newUser") User newPerson) {
 		this.personService.save(newPerson);
 		emailService.sendMail(newPerson.getEmail(), newUserSubject,  newUserMessage);
 		//		System.out.println(newPerson.getEmail() + newUserSubject);	
-		return login(model);
+		return new ModelAndView("login", "userLogin", newPerson);
 	}
-
+*/
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public ModelAndView login(Model model) {
-		return new ModelAndView("home", "userLogin", new User());
-	}
-
-	@RequestMapping("/") //use spring to create a servlet for your index page --- if user doesn't enter a path this is the default
-	public String index() {
-		return "about"; //tell spring to find and display the index page
+	public String login(Model model) {
+		return "home";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String handleLogin(Model model, @ModelAttribute("userLogin") User userLogin, HttpSession session) {
+		
 		User u = this.personService.login(userLogin.getEmail(), userLogin.getPassword());
+	
 		if(u == null) {
 			model.addAttribute("loginError", "username or password invalid");
 			return "about";
@@ -99,6 +96,7 @@ public class LoginController {
 			model.addAttribute("myUserPost", posts);
 			
 			model.addAttribute("userLogin", u);
+			session.setAttribute("loggedInUser", u);
 			return "home";
 		}
 
