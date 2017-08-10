@@ -17,6 +17,7 @@ import com.joelle.repository.PersonRepository;
 public class PersonService {
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 	private String loginSql = "select U.* from user U where U.email=:email and U.password=:password";
 	private String getUsersPosts = "select P.* from post P where P.email=:email";
 	
@@ -31,7 +32,7 @@ public class PersonService {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Posting> getUsersPosts(String email){
-		System.out.println("user email: " + email);return (ArrayList<Posting>) entityManager.createNativeQuery(getUsersPosts, Posting.class).setParameter("email", email).getResultList();
+		return (ArrayList<Posting>) entityManager.createNativeQuery(getUsersPosts, Posting.class).setParameter("email", email).getResultList();
 	}
 	
 	@Transactional

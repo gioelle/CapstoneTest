@@ -1,8 +1,7 @@
 <%@page import="com.joelle.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	User u = (User) session.getAttribute("u");
-%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +41,26 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<!-- <script type="text/javascript">
+	var inputs = document.querySelectorAll('.inputfile');
+	Array.prototype.forEach.call(inputs, function(input) {
+		var label = input.nextElementSibling, labelVal = label.innerHTML;
 
+		input.addEventListener('change', function(e) {
+			var fileName = '';
+			if (this.files && this.files.length > 1)
+				fileName = (this.getAttribute('data-multiple-caption') || '')
+						.replace('{count}', this.files.length);
+			else
+				fileName = e.target.value.split('\\').pop();
+
+			if (fileName)
+				label.querySelector('span').innerHTML = fileName;
+			else
+				label.innerHTML = labelVal;
+		});
+	});
+</script> -->
 </head>
 
 <body id="page-top">
@@ -80,28 +98,30 @@
 	<header>
 		<div class="header-content">
 			<div class="header-content-inner">
-				<h1 id="homeHeading">Hello, ${u.firstName}!</h1>
-				<img src="${u.profilePic}" class="img-circle" height="55" width="55"
-					alt=""> <br>
-					<form action="upload">
-				<h6>
-					<input type="file" name="file" id="file" class="inputfile"/>
-					<label for="file">Choose a profile
-						picture</label>
-				</h6></form>
+				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
+				<img src="${userLogin.profilePic}" class="img-circle" height="155px"
+					width="155px" alt=""> <br>
+				<form action="uploadProfile" method="POST"
+					enctype="multipart/form-data">
+					<h6>
+						<input type="file" name="file" id="file" class="inputfile" /> <label
+							for="file">Choose a profile picture</label>
+					</h6>
+					<button type="submit" class="page-scroll btn btn-default btn-m sr-button" style="color: white; background-color: #F05F40;">upload</button>
+				</form>
 				<hr>
 				<h3>
-					<b>Your SwaPoints balance is: ${u.swaPointsBalance}</b>
+					<b>Your SwaPoints balance is: ${userLogin.swaPointsBalance}</b>
 				</h3>
 				<h3>
 					<b>How would you like to invest in your community today?</b>
 				</h3>
-				<a href="#post" class="btn btn-primary btn-xl page-scroll">New
+				<a href="#post" class="btn btn-primary btn-l page-scroll">New
 					post!</a> <br> <br>
-				<form class="huge-search--search-home" action="search" method="POST">
+				<form class="search--search-home" action="search" method="POST">
 					<input type="search" name="term" value="" autocomplete="off"
 						class="js-term" placeholder="Search Postings" /> <br> <br>
-					<button type="submit" class="btn btn-primary btn-xl page-scroll">Search!</button>
+					<button type="submit" class="btn btn-primary btn-l page-scroll">Search!</button>
 				</form>
 
 			</div>
@@ -133,8 +153,7 @@
 										<td><c:out value="${postedItem.title}"></c:out></td>
 										<td><c:out value="${postedItem.value}"></c:out></td>
 										<td><c:out value="${postedItem.instances}"></c:out></td>
-										<td><a href="#"><span style="color: white">Edit
-											</span></a>/<a href="#"><span style="color: white"> Delete</span></a></td>
+										<td><a href="#"><span style="color: white">Delete</span></a></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>

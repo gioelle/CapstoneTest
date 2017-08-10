@@ -120,8 +120,8 @@
 						<div class="col-sm-5">
 							<div class="well" style="height: 350px; margin-bottom: 5px; overflow:auto;" id="postHolder">
 								<div>
-								<div>
-									<p>
+								<div> 
+									<p> 
 										Title: <span style="font-weight: bold"><c:out
 												value="${post.title}" /></span>
 									</p>
