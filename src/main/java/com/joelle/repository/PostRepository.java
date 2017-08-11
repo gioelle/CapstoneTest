@@ -10,5 +10,6 @@ import com.joelle.entity.Posting;
 @Repository
 public interface PostRepository extends JpaRepository<Posting, String> {
 	@Query("Select P from Posting P where P.instances > 0")
-	public Posting getAllPosts(); 
+	public Posting getAllPosts();
+
 }

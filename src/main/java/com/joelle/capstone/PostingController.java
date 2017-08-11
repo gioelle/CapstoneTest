@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.joelle.entity.Posting;
+import com.joelle.entity.Transaction;
 import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
+import com.joelle.service.TransactionService;
 
 @Controller
 public class PostingController {
 	@Autowired
 	PostingService postingService;
+	@Autowired
+	TransactionService transactionService;
 
 	@RequestMapping(value = "/CreatePosting", method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("posting") Posting posting,
@@ -45,9 +49,6 @@ public class PostingController {
 
 				}
 			}
-
-			// TODO add this posting to my user's array list of postings in the database
-			// model.addAttribute( /* how ever i call the posting*/, posting);
 			postingService.save(posting);
 			model.addAttribute(posting);
 			return "home";
@@ -64,7 +65,7 @@ public class PostingController {
 		model.addAttribute("post", posts);
 		return "postings";
 	}
-	
+
 	@RequestMapping(value="/item", method=RequestMethod.GET)
 	public String getItemPosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getItemPosts();
@@ -80,19 +81,23 @@ public class PostingController {
 		model.addAttribute("post", posts);
 		return "postings";
 	}
-	
+
 	@RequestMapping(value="/service", method=RequestMethod.GET)
 	public String getServicePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getServicePosts();
 		model.addAttribute("post", posts);
 		return "postings";
 	}
-	
+
 	@RequestMapping(value="/swap", method=RequestMethod.GET)
-	public String processSwap(Model model, @ModelAttribute("postSwap")Posting postSwap) {
-		postSwap=postingService.oneLessInstance();
-		System.out.println("post title and instances: "+postSwap.getTitle()+ " " + postSwap.getInstances());
-		model.addAttribute("post", postSwap);
-		return "postings";
+	public String processSwap(Model model, @ModelAttribute("postSwap")Posting postSwap, HttpSession session) {
+		postSwap.setInstances((postSwap.getInstances()-1));
+		System.out.println("details  "+ postSwap.getDescription()+ " " + postSwap.getInstances());
+		postingService.save2(postSwap);
+		User loggedInUser = (User)session.getAttribute("loggedInUser");
+		Transaction transaction = new Transaction(postSwap.getEmail(), postSwap.getTitle(), postSwap.getValue(), loggedInUser.getEmail());
+		model.addAttribute("transaction", transaction);
+		return "home";
 	}
+
 }

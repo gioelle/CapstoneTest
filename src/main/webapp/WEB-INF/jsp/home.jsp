@@ -86,7 +86,7 @@
 					<li><a class="page-scroll" href="#currentPosts">My Posts</a></li>
 					<li><a class="page-scroll" href="about">About</a></li>
 					<li><a class="page-scroll" href="#services">Services</a></li>
-					<li><a class="page-scroll" href="#logout">Log Out</a></li>
+					<li><a class="page-scroll" href="logout">Log Out</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
 				</ul>
 			</div>

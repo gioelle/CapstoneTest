@@ -23,7 +23,7 @@ public class PostingService {
 	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type = 'item'";
 	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type = 'resource'";
 	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type = 'service'";
-	private String reduceInstancesBy1 = "Update P from post P set instance=instances -1 where P.id=:id";
+	
 
 	@Autowired 
 	private PostRepository postRepository;
@@ -52,10 +52,6 @@ public class PostingService {
 		return (ArrayList<Posting>) entityManager.createNativeQuery(getServicePosts, Posting.class).getResultList();
 	}
 	
-	@Transactional
-	public Posting oneLessInstance() {
-		return (Posting)entityManager.createNativeQuery(reduceInstancesBy1, Posting.class).getSingleResult();
-	}
 	
 	@Transactional
 	public void save(Posting post) {
