@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.joelle.entity.Posting;
+import com.joelle.entity.Transaction;
 import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
@@ -97,6 +98,9 @@ public class LoginController {
 			}
 			model.addAttribute("myUserPost", posts);
     		model.addAttribute("newPost", new Posting());
+    		
+    		ArrayList<Transaction> transactions = personService.getUsersTrans(userLogin.getEmail());		
+    		model.addAttribute("transactions", transactions);
 			model.addAttribute("userLogin", u);
 			session.setAttribute("userLogin", u);
 			return "home";

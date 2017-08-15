@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SwaProcity - Browse</title>
+<title>SwaProcity</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="postings/css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +45,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SwaProcity Postings</a>
+				<a class="navbar-brand" href="#">SwaProcity: Rate Your Swap Experience</a>
 
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,60 +116,6 @@
 					</div>
 
 				</div>
-				<c:forEach var="post" items="${post}">
-					<c:if test="${post.instances>0}">
-						<!--  this is just one post message from here....  -->
-						<!--<div class="row"> -->
-							<div class="col-sm-5">
-								<div class="well"
-									style="height: 350px; margin-bottom: 5px; overflow: auto;"
-									id="postHolder">
-									<div>
-										<div>
-											<p>
-												Title: <span style="font-weight: bold"><c:out value="${post.title}"/></span>
-											</p>
-											<hr style="margin-top: 10px; margin-bottom: 10px">
-											<p>
-												Type: <span style="font-weight: bold"><c:out
-														value="${post.type}" /></span>
-											</p>
-											<hr style="margin-top: 10px; margin-bottom: 10px">
-											<p>
-												Description: <br> <span style="font-weight: bold"><c:out
-														value="${post.description}" /></span>
-											</p>
-											<p>
-												<br> <img src="${post.picture}" height="100%"
-													width="100%" alt="Post Image">
-											</p>
-											<p>
-												SwaPoints: <span style="font-weight: bold"><c:out
-														value="${post.value}" /></span>
-											</p>
-											<img src="${post.user.profilePic}" class="img-circle"
-												height="55" width="55" alt="Avatar"> <br>
-											<p>
-												Posted by: <span style="font-weight: bold"><c:out
-														value="${post.user.firstName}" /></span>
-											</p>
-											User rating: <span style="font-weight: bold"><c:out
-													value="${post.user.rating}" /></span> <br> <br>
-										</div>
-									</div>
-								</div>
-								<div class="button"
-									style="text-align: center; font: bold; margin-top: 10px; margin-bottom: 50px;">
-									<form action="swapPost" method="Post">
-									<input type="hidden" value="${post.id}" name="postId"/>
-									<button id="swapButton" type="submit" class="btn btn-default btn-sm;" 
-									style="button-align: center; height: 1.42857143; font-weight: bold;">
-										Swap!</button>
-										</form>
-								</div>
-							</div>
-					</c:if>
-				</c:forEach>
 			</div>
 		</div>
 	</div>

@@ -68,7 +68,6 @@ public class PostingController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String toPostings(Model model, @ModelAttribute("term") String keyword) {
-		System.out.println("search controller" + keyword);
 		ArrayList<Posting> posts = postingService.getAllPosts();
 		model.addAttribute("post", posts);
 		model.addAttribute("postSwap",new Posting());
@@ -113,15 +112,16 @@ public class PostingController {
 		return "postings";
 	}
 
-	@RequestMapping(value="/swap", method=RequestMethod.POST)
-	public String processSwap(Model model, @ModelAttribute("postSwap")Posting postSwap, HttpSession session) {
-		postSwap.setInstances((postSwap.getInstances()-1));
-		System.out.println("details  "+ postSwap.getTitle());
-		postingService.save2(postSwap);
-		User loggedInUser = (User)session.getAttribute("loggedInUser");
-		Transaction transaction = new Transaction(postSwap.getEmail(), postSwap.getTitle(), postSwap.getValue(), loggedInUser.getEmail(), postSwap.getType());
-		transactionService.save(transaction);
-		model.addAttribute("transaction", transaction);
+	@RequestMapping(value="/swapPost", method=RequestMethod.POST)
+	public String processSwap(Model model, @RequestParam("postId")Long postID, HttpSession session) {
+		User loggedInUser = (User) session.getAttribute("userLogin");
+		postingService.swap(postID, loggedInUser);
+		
+		ArrayList<Transaction> transactions = personService.getUsersTrans(loggedInUser.getEmail());		
+		model.addAttribute("transaction", transactions);
+		ArrayList<Posting> posts = personService.getUsersPosts(loggedInUser.getEmail());		
+		model.addAttribute("myUserPost", posts);
+		model.addAttribute("newPost", new Posting());
 		return "home";
 	}
 

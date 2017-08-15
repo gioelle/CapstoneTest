@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import com.joelle.entity.Posting;
 
 @Repository
-public interface PostRepository extends JpaRepository<Posting, String> {
+public interface PostRepository extends JpaRepository<Posting, Long> {
 	@Query("Select P from Posting P where P.instances > 0")
 	public Posting getAllPosts();
 

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joelle.entity.Posting;
+import com.joelle.entity.Transaction;
+import com.joelle.entity.User;
 import com.joelle.repository.PostRepository;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,10 @@ public class PostingService {
 
 	@Autowired 
 	private PostRepository postRepository;
+	@Autowired
+	private PersonService personService;
+	@Autowired
+	private TransactionService transactionService;
 	
 	@Transactional
 	public void deletePost(String id) {
@@ -59,6 +65,10 @@ public class PostingService {
 		return (ArrayList<Posting>) entityManager.createNativeQuery(getServicePosts, Posting.class).getResultList();
 	}
 	
+	@Transactional
+	public Posting findByID(Long postID) {
+		return (Posting) postRepository.findOne(postID);
+	}
 	
 	@Transactional
 	public void save(Posting post) {
@@ -68,5 +78,29 @@ public class PostingService {
 	@Transactional
 	public void save2(Posting post) {
 		this.postRepository.save(post);
+	}
+	
+	@Transactional
+	public void swap(long postID, User buyingUser) {
+		Posting postSwap = this.findByID(postID);
+		postSwap.setInstances((postSwap.getInstances()-1));
+		//save the post with the updated instances value
+		this.save2(postSwap);
+		//change swapoints of the user transacting
+
+		buyingUser.setSwaPointsBalance(buyingUser.getSwaPointsBalance()-postSwap.getValue());
+		personService.save(buyingUser);
+		
+		//change swapoints of user who created the post
+		User postedUser = personService.findByEmail(postSwap.getEmail());
+		postedUser.setSwaPointsBalance(postedUser.getSwaPointsBalance()+postSwap.getValue());
+		personService.save(postedUser);
+	
+		
+		//create a transaction & save it
+		Transaction transaction = new Transaction(postSwap.getEmail(), postSwap.getTitle(), postSwap.getValue(), buyingUser.getEmail(), postSwap.getType());
+		transactionService.save(transaction);
+		
+
 	}
 }
