@@ -20,13 +20,20 @@ public class PostingService {
 	private EntityManager entityManager;
 	
 	private String getAllPosts = "Select P.* from post P where P.instances>0";
-	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type = 'item'";
-	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type = 'resource'";
-	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type = 'service'";
-	
+	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type =:item";
+	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type =:resource";
+	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type =:service";
+	private String deleteAPost = "Delete from post where id =:id";
 
 	@Autowired 
 	private PostRepository postRepository;
+	
+	@Transactional
+	public void deletePost(String id) {
+		System.out.println("Id = " + id);
+		Long deleteId = Long.parseLong(id);
+		entityManager.createNativeQuery(deleteAPost, Posting.class).setParameter("id", deleteId).executeUpdate();
+	}
 	
 	@SuppressWarnings("unchecked")
 	@Transactional

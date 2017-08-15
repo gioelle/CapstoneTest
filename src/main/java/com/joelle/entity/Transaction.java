@@ -35,11 +35,12 @@ public class Transaction {
 	@JoinColumn(name="email", insertable=false, updatable=false)
 	private User user;
 
-	public Transaction(String email, String title, int value, String buyingUser) {
+	public Transaction(String email, String title, int value, String buyingUser, String type) {
 		this.email = email;
 		this.title = title;
 		this.value = value;
 		this.buyingUser = buyingUser;
+		this.type = type;
 	}
 	
 	

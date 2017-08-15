@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.joelle.entity.Posting;
 import com.joelle.entity.Transaction;
 import com.joelle.entity.User;
+import com.joelle.repository.PersonRepository;
 import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
 import com.joelle.service.TransactionService;
@@ -28,12 +30,15 @@ public class PostingController {
 	PostingService postingService;
 	@Autowired
 	TransactionService transactionService;
+	@Autowired
+	PersonService personService;
 
+	
 	@RequestMapping(value = "/CreatePosting", method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("posting") Posting posting,
 			@RequestParam("file") MultipartFile file) {
 		if (posting != null) {
-
+			System.out.println(posting.getTitle());
 			if (!file.isEmpty()) {
 				try {
 					String fileName = file.getOriginalFilename();
@@ -50,7 +55,10 @@ public class PostingController {
 				}
 			}
 			postingService.save(posting);
-			model.addAttribute(posting);
+//			model.addAttribute(posting);
+			model.addAttribute("myUserPost", (ArrayList<Posting>) personService.getUsersPosts(posting.getEmail()));
+    		model.addAttribute("newPost", new Posting());
+    		model.addAttribute("userLogin", personService.findByEmail(posting.getEmail()));
 			return "home";
 		} else {
 			model.addAttribute("error", "Please enter posting details");
@@ -63,14 +71,17 @@ public class PostingController {
 		System.out.println("search controller" + keyword);
 		ArrayList<Posting> posts = postingService.getAllPosts();
 		model.addAttribute("post", posts);
+		model.addAttribute("postSwap",new Posting());
 		return "postings";
 	}
 
 	@RequestMapping(value="/item", method=RequestMethod.GET)
 	public String getItemPosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getItemPosts();
-		System.out.println("Item Posts: "+posts.size());
+		System.out.println("Item Posts: "+ posts.size());
+		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
+		model.addAttribute("userLogin", userLogin);
 		return "postings";
 	}
 
@@ -78,24 +89,38 @@ public class PostingController {
 	public String getResourcePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getResourcePosts();
 		System.out.println("Resource Posts: "+posts.size());
+		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
+		model.addAttribute("userLogin", userLogin);
+		return "postings";
+	}
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public String getPostsAllTypes(Model model, @ModelAttribute("userLogin") User userLogin) {
+		ArrayList<Posting> posts = postingService.getAllPosts();
+		model.addAttribute("postSwap",new Posting());
+		model.addAttribute("post", posts);
+		model.addAttribute("userLogin", userLogin);
 		return "postings";
 	}
 
 	@RequestMapping(value="/service", method=RequestMethod.GET)
 	public String getServicePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getServicePosts();
+		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
+		model.addAttribute("userLogin", userLogin);
 		return "postings";
 	}
 
-	@RequestMapping(value="/swap", method=RequestMethod.GET)
+	@RequestMapping(value="/swap", method=RequestMethod.POST)
 	public String processSwap(Model model, @ModelAttribute("postSwap")Posting postSwap, HttpSession session) {
 		postSwap.setInstances((postSwap.getInstances()-1));
-		System.out.println("details  "+ postSwap.getDescription()+ " " + postSwap.getInstances());
+		System.out.println("details  "+ postSwap.getTitle());
 		postingService.save2(postSwap);
 		User loggedInUser = (User)session.getAttribute("loggedInUser");
-		Transaction transaction = new Transaction(postSwap.getEmail(), postSwap.getTitle(), postSwap.getValue(), loggedInUser.getEmail());
+		Transaction transaction = new Transaction(postSwap.getEmail(), postSwap.getTitle(), postSwap.getValue(), loggedInUser.getEmail(), postSwap.getType());
+		transactionService.save(transaction);
 		model.addAttribute("transaction", transaction);
 		return "home";
 	}

@@ -35,11 +35,11 @@ public class LoginController {
 	private final static String newUserSubject = "Welcome to SwaProcity!";
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submit(Model model,
-    		@ModelAttribute("user") User user) {
+    public String submit(Model model, @ModelAttribute("user") User user) {
     	if(user != null) {
     		personService.save(user);
-    		model.addAttribute("u", user);
+    		model.addAttribute("loggedInUser", user);
+    		model.addAttribute("newPost", new Posting());
     		return "home";
     	} else {
     		return "about";
@@ -96,9 +96,9 @@ public class LoginController {
 				System.out.println(posting.getType());
 			}
 			model.addAttribute("myUserPost", posts);
-			
+    		model.addAttribute("newPost", new Posting());
 			model.addAttribute("userLogin", u);
-			session.setAttribute("loggedInUser", u);
+			session.setAttribute("userLogin", u);
 			return "home";
 		}
 

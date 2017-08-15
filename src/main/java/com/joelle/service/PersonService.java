@@ -44,4 +44,9 @@ public class PersonService {
 	public void save2(User user) {
 		this.personRepository.save(user);
 	}
+	
+	@Transactional
+	public User findByEmail(String email) {
+		return (User) personRepository.findOne(email);
+	}
 }

@@ -42,6 +42,7 @@ public class Posting {
 	@JoinColumn(name="email", insertable=false, updatable=false)
 	private User user;
 	
+	
 	//private ArrayList<ImageFiles> images = new ArrayList<ImageFiles>();
 	
 	

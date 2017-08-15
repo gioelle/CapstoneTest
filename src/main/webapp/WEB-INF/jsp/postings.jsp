@@ -72,7 +72,7 @@
 				<div class="list-group">
 					<a href="item" class="list-group-item">Items</a> <a href="service"
 						class="list-group-item">Services</a> <a href="resource"
-						class="list-group-item">Resources</a> <a href="allPosts"
+						class="list-group-item">Resources</a> <a href="all"
 						class="list-group-item">All</a>
 
 				</div>
@@ -120,7 +120,7 @@
 					<c:if test="${post.instances>0}">
 						<!--  this is just one post message from here....  -->
 						<!--<div class="row"> -->
-						<form:form action="swap" method="GET" modelAttribute="postSwap">
+						<form:form action="swap" method="POST" commandName="postSwap">
 							<div class="col-sm-5">
 								<div class="well"
 									style="height: 350px; margin-bottom: 5px; overflow: auto;"
@@ -128,8 +128,7 @@
 									<div>
 										<div>
 											<p>
-												Title: <span style="font-weight: bold"><c:out
-														value="${post.title}" /></span>
+												Title: <span style="font-weight: bold"><form:label path="title" value="${post.title}"></form:label></span>
 											</p>
 											<hr style="margin-top: 10px; margin-bottom: 10px">
 											<p>

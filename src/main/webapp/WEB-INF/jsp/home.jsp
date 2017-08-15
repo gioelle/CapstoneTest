@@ -41,26 +41,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<!-- <script type="text/javascript">
-	var inputs = document.querySelectorAll('.inputfile');
-	Array.prototype.forEach.call(inputs, function(input) {
-		var label = input.nextElementSibling, labelVal = label.innerHTML;
-
-		input.addEventListener('change', function(e) {
-			var fileName = '';
-			if (this.files && this.files.length > 1)
-				fileName = (this.getAttribute('data-multiple-caption') || '')
-						.replace('{count}', this.files.length);
-			else
-				fileName = e.target.value.split('\\').pop();
-
-			if (fileName)
-				label.querySelector('span').innerHTML = fileName;
-			else
-				label.innerHTML = labelVal;
-		});
-	});
-</script> -->
 </head>
 
 <body id="page-top">
@@ -85,7 +65,6 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="page-scroll" href="#currentPosts">My Posts</a></li>
 					<li><a class="page-scroll" href="about">About</a></li>
-					<li><a class="page-scroll" href="#services">Services</a></li>
 					<li><a class="page-scroll" href="logout">Log Out</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
 				</ul>
@@ -98,8 +77,8 @@
 	<header>
 		<div class="header-content">
 			<div class="header-content-inner">
-				<h1 id="homeHeading">Hello, ${loggedInUser.firstName}!</h1>
-				<img src="${loggedInUser.profilePic}" class="img-circle" height="155px"
+				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
+				<img src="${userLogin.profilePic}" class="img-circle" height="155px"
 					width="155px" alt=""> <br>
 				<form action="uploadProfile" method="POST"
 					enctype="multipart/form-data">
@@ -112,7 +91,7 @@
 				</form>
 				<hr>
 				<h3>
-					<b>Your SwaPoints balance is: ${loggedInUser.swaPointsBalance}</b>
+					<b>Your SwaPoints balance is: ${userLogin.swaPointsBalance}</b>
 				</h3>
 				<h3>
 					<b>How would you like to invest in your community today?</b>
@@ -154,7 +133,7 @@
 										<td><c:out value="${postedItem.title}"></c:out></td>
 										<td><c:out value="${postedItem.value}"></c:out></td>
 										<td><c:out value="${postedItem.instances}"></c:out></td>
-										<td><a href="#"><span style="color: white">Delete</span></a></td>
+										<td><a href="delete?id=${postedItem.id}"><span style="color: white">Delete</span></a></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -230,7 +209,7 @@
 					style="align: center; Width: 40%; float: left; padding-right: 50px">
 					<h3>Create a new post:</h3>
 					<div class="form-group">
-						<input type="hidden" class="form-control" value="${u.email}"
+						<input type="hidden" class="form-control" value="${userLogin.email}"
 							name="email" id="email" placeholder="email" />
 					</div>
 					<input type="radio" name="type" value="item" id="type" /> <i
