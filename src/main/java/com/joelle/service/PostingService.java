@@ -22,9 +22,9 @@ public class PostingService {
 	private EntityManager entityManager;
 	
 	private String getAllPosts = "Select P.* from post P where P.instances>0";
-	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type =:item";
-	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type =:resource";
-	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type =:service";
+	private String getItemPosts = "Select P.* from post P where P.instances>0 AND P.type ='item'";
+	private String getResourcePosts = "Select P.* from post P where P.instances>0 AND P.type ='resource'";
+	private String getServicePosts = "Select P.* from post P where P.instances>0 AND P.type ='service'";
 	private String deleteAPost = "Delete from post where id =:id";
 
 	@Autowired 
@@ -89,7 +89,7 @@ public class PostingService {
 		//change swapoints of the user transacting
 
 		buyingUser.setSwaPointsBalance(buyingUser.getSwaPointsBalance()-postSwap.getValue());
-		personService.save(buyingUser);
+		personService.save2(buyingUser);
 		
 		//change swapoints of user who created the post
 		User postedUser = personService.findByEmail(postSwap.getEmail());

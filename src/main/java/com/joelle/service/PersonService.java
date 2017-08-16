@@ -21,7 +21,6 @@ public class PersonService {
 	
 	private String loginSql = "select U.* from user U where U.email=:email and U.password=:password";
 	private String getUsersPosts = "select P.* from post P where P.email=:email";
-	private String getUsersTransactions = "select T.* from transaction T where T.email=:email";
 	
 	@Autowired
 	private PersonRepository personRepository;
@@ -37,15 +36,10 @@ public class PersonService {
 		return (ArrayList<Posting>) entityManager.createNativeQuery(getUsersPosts, Posting.class).setParameter("email", email).getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Transactional
-	public ArrayList<Transaction> getUsersTrans(String email){
-		return (ArrayList<Transaction>) entityManager.createNativeQuery(getUsersTransactions, Posting.class).setParameter("email", email).getResultList();
-	}
-	
+
 	@Transactional
 	public void save(User user) {
-		this.entityManager.persist(user);
+		this.entityManager.merge(user);
 	}
 	
 	@Transactional

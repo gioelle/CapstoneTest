@@ -18,19 +18,25 @@ public class TransactionService {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	private String getAllTrans = "Select T from transaction T";
-	private String getUserTrans = "select T from transaction T where T.email=:email";
-	private String getUserItemTrans = "Select T from post T where T.type = 'item' AND T.email=:email";
-	private String getUserResourceTrans = "Select T from post T where T.type = 'resource' AND T.email=:email";
-	private String getUserServiceTrans = "Select T from post T where T.type = 'service' AND T.email=:email";
+//	private String getAllTrans = "Select T from transaction T";
+	private String getUserTrans = "select T.* from transaction T where T.user=:email OR T.email=:email";
+//	private String getUserItemTrans = "Select T from post T where T.type = 'item' AND T.email=:email";
+//	private String getUserResourceTrans = "Select T from post T where T.type = 'resource' AND T.email=:email";
+//	private String getUserServiceTrans = "Select T from post T where T.type = 'service' AND T.email=:email";
 
 	@Autowired 
 	private TransRepository transRepository;
-
+	
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public ArrayList<Transaction> getUserTrans(String email){
-		System.out.println("user email: " + email);return (ArrayList<Transaction>) entityManager.createNativeQuery(getUserTrans, Transaction.class).setParameter("email", email).getResultList();
+	public ArrayList<Transaction> getUsersTrans(String email){
+		System.out.println("user email: " + email);
+		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+		transactions = (ArrayList<Transaction>)entityManager.createNativeQuery(getUserTrans, Transaction.class).setParameter("email", email).getResultList();
+		for (Transaction transaction : transactions) {
+			System.out.println(transaction.getTitle());
+		}
+		return transactions;
 	}
 	
 	@Transactional

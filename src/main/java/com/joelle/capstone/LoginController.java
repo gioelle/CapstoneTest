@@ -20,6 +20,7 @@ import com.joelle.entity.User;
 import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
 import com.joelle.service.SendMail;
+import com.joelle.service.TransactionService;
 /**
  * Handles requests for the application landing page "about.jsp"
  */
@@ -29,6 +30,8 @@ public class LoginController {
 	PersonService personService;
 	@Autowired
 	PostingService postingService;
+	@Autowired
+	TransactionService transactionService;
 	
 	@Autowired
 	private SendMail emailService;
@@ -36,11 +39,13 @@ public class LoginController {
 	private final static String newUserSubject = "Welcome to SwaProcity!";
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submit(Model model, @ModelAttribute("user") User user) {
+    public String submit(Model model, @ModelAttribute("user") User user, HttpSession session) {
     	if(user != null) {
     		personService.save(user);
     		model.addAttribute("loggedInUser", user);
     		model.addAttribute("newPost", new Posting());
+    		emailService.sendMail(user.getEmail(), newUserSubject, newUserMessage);
+    		session.setAttribute("userLogin", user);
     		return "home";
     	} else {
     		return "about";
@@ -63,20 +68,6 @@ public class LoginController {
 		return "about";
 	}
 
-	/*@RequestMapping(value="/signup", method=RequestMethod.GET)
-	public ModelAndView signup(Model model) {	
-		return new ModelAndView("signup", "newUser", new User());
-	}*/
-
-	//Do error handling try catch here to avoid problems with internet on demo day
-	/*@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public ModelAndView handleSignup(Model model, @ModelAttribute("newUser") User newPerson) {
-		this.personService.save(newPerson);
-		emailService.sendMail(newPerson.getEmail(), newUserSubject,  newUserMessage);
-		//		System.out.println(newPerson.getEmail() + newUserSubject);	
-		return new ModelAndView("login", "userLogin", newPerson);
-	}
-*/
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model) {
 		return "home";
@@ -98,13 +89,16 @@ public class LoginController {
 			}
 			model.addAttribute("myUserPost", posts);
     		model.addAttribute("newPost", new Posting());
-    		
-    		ArrayList<Transaction> transactions = personService.getUsersTrans(userLogin.getEmail());		
-    		model.addAttribute("transactions", transactions);
+    		getTransactions(model, userLogin.getEmail());
 			model.addAttribute("userLogin", u);
 			session.setAttribute("userLogin", u);
 			return "home";
 		}
 
+	}
+	
+	private void getTransactions(Model model, String email) {
+		ArrayList<Transaction> trans = transactionService.getUsersTrans(email);		
+		model.addAttribute("transactions", trans);
 	}
 }

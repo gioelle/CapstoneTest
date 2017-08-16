@@ -22,6 +22,7 @@ import com.joelle.entity.User;
 import com.joelle.repository.PersonRepository;
 import com.joelle.service.PersonService;
 import com.joelle.service.PostingService;
+import com.joelle.service.SendMail;
 import com.joelle.service.TransactionService;
 
 @Controller
@@ -32,7 +33,10 @@ public class PostingController {
 	TransactionService transactionService;
 	@Autowired
 	PersonService personService;
-
+	@Autowired
+	private SendMail emailService;
+	private final static String swapMessage = "You've just initiated a swap with INSERT POSTING USER HERE";
+	private final static String swapSubject = "Thank you for Swapping!";
 	
 	@RequestMapping(value = "/CreatePosting", method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("posting") Posting posting,
@@ -95,20 +99,18 @@ public class PostingController {
 	}
 	
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public String getPostsAllTypes(Model model, @ModelAttribute("userLogin") User userLogin) {
+	public String getPostsAllTypes(Model model, HttpSession session) {
 		ArrayList<Posting> posts = postingService.getAllPosts();
 		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
-		model.addAttribute("userLogin", userLogin);
 		return "postings";
 	}
 
 	@RequestMapping(value="/service", method=RequestMethod.GET)
-	public String getServicePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
+	public String getServicePosts(Model model, HttpSession session) {
 		ArrayList<Posting> posts = postingService.getServicePosts();
 		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
-		model.addAttribute("userLogin", userLogin);
 		return "postings";
 	}
 
@@ -116,13 +118,14 @@ public class PostingController {
 	public String processSwap(Model model, @RequestParam("postId")Long postID, HttpSession session) {
 		User loggedInUser = (User) session.getAttribute("userLogin");
 		postingService.swap(postID, loggedInUser);
-		
-		ArrayList<Transaction> transactions = personService.getUsersTrans(loggedInUser.getEmail());		
+		getPosts(model, loggedInUser.getEmail());
+		ArrayList<Transaction> transactions = transactionService.getUsersTrans(loggedInUser.getEmail());		
 		model.addAttribute("transaction", transactions);
-		ArrayList<Posting> posts = personService.getUsersPosts(loggedInUser.getEmail());		
-		model.addAttribute("myUserPost", posts);
 		model.addAttribute("newPost", new Posting());
 		return "home";
 	}
-
+	private void getPosts(Model model, String email) {
+		ArrayList<Posting> posts = personService.getUsersPosts(email);		
+		model.addAttribute("myUserPost", posts);
+	}
 }

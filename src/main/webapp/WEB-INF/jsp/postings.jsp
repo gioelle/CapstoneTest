@@ -122,7 +122,7 @@
 						<!--<div class="row"> -->
 							<div class="col-sm-5">
 								<div class="well"
-									style="height: 350px; margin-bottom: 5px; overflow: auto;"
+									style="height: 400px; margin-bottom: 5px; overflow: auto;"
 									id="postHolder">
 									<div>
 										<div>

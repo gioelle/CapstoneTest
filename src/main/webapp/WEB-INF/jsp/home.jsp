@@ -1,7 +1,9 @@
 <%@page import="com.joelle.entity.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<% User loggedInUser = (User)session.getAttribute("loggedInUser"); %>
+<%
+	User userLogin = (User) session.getAttribute("userLogin");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,12 +84,14 @@
 					width="155px" alt=""> <br>
 				<form action="uploadProfile" method="POST"
 					enctype="multipart/form-data">
-					
+
 					<h6>
 						<input type="file" name="file" id="file" class="inputfile" /> <label
 							for="file">Choose a profile picture</label>
 					</h6>
-					<button type="submit" class="page-scroll btn btn-default btn-m sr-button" style="color: white; background-color: #F05F40;">upload</button>
+					<button type="submit"
+						class="page-scroll btn btn-default btn-m sr-button"
+						style="color: white; background-color: #F05F40;">upload</button>
 				</form>
 				<hr>
 				<h3>
@@ -133,7 +137,8 @@
 										<td><c:out value="${postedItem.title}"></c:out></td>
 										<td><c:out value="${postedItem.value}"></c:out></td>
 										<td><c:out value="${postedItem.instances}"></c:out></td>
-										<td><a href="delete?id=${postedItem.id}"><span style="color: white">Delete</span></a></td>
+										<td><a href="delete?id=${postedItem.id}"><span
+												style="color: white">Delete</span></a></td>
 									</tr>
 								</c:forEach>
 							</c:otherwise>
@@ -147,58 +152,59 @@
 		</div>
 	</section>
 
-	<%-- 	<section id="services" style="padding: 50px; background-color: #faf6d0">
+	<section id="services" style="padding: 50px; background-color: #faf6d0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading">Recent Transactions</h2>
-					<hr class="primary">
+					<div class="col-lg-3 col-md-6 text-center" style="float-left">
+						<div class="service-box">
+							<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
+							<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i><br>
+							<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i><br>
+							<i class="fa fa-4x fa-heart text-primary sr-icons"></i><br>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
-						<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i><br>
-						<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i><br>
-						<i class="fa fa-4x fa-heart text-primary sr-icons"></i><br>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<p class="text-muted">
-							Today ${transaction.date}<br>Test Title ${transaction.title}<br>Value
-							${transaction.value}<br>User ${transaction.user}</p>
-							<c:choose>
-							<c:when test="${empty myUserPost}">
+			<div class="row" style="float:right">
+			<hr class="primary">
+				<table style="" class="table table-hover">
+					<c:choose>
+						<c:when test="${empty transactions}">
 							You don't have any past transactions.
 							</c:when>
-							<c:otherwise>
-								<tr>
-									<th style="text-align:center">Date</th>
-									<th style="text-align:center">Title</th>
-									<th style="text-align:center">Value</th>
-									<th style="text-align:center">User</th>
-								</tr>
-								<c:forEach items="${myUserPost}" var="postedItem">
+						<c:otherwise>
+							<tr>
+								<th style="text-align: center">Date</th>
+								<th style="text-align: center">Type</th>
+								<th style="text-align: center">Title</th>
+								<th style="text-align: center">Value</th>
+								<th style="text-align: center">Selling User</th>
+								<th style="text-align: center">Buying User</th>
 
-									<tr>
-										<td><c:out value="${postedItem.date}"></c:out></td>
-										<td><c:out value="${postedItem.title}"></c:out></td>
-										<td><c:out value="${postedItem.value}"></c:out></td>
-										<td><c:out value="${postedItem.email}"></c:out></td>
-									</tr>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</div>
+							</tr>
+							<c:forEach items="${transactions}" var="trans">
+
+								<tr>
+									<td><c:out value="${trans.date}"></c:out></td>
+									<td><c:out value="${trans.type}"></c:out></td>
+									<td><c:out value="${trans.title}"></c:out></td>
+									<td><c:out value="${trans.value}"></c:out></td>
+									<td><c:out value="${trans.email}"></c:out></td>
+									<td><c:out value="${trans.buyingUser}"></c:out></td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</table>
 			</div>
 		</div>
+
 	</section>
- --%>
 
 	<section id="post" style="background-color: #222">
 		<aside class="bg-dark" style="padding: 50px; height: 700px">
@@ -209,8 +215,9 @@
 					style="align: center; Width: 40%; float: left; padding-right: 50px">
 					<h3>Create a new post:</h3>
 					<div class="form-group">
-						<input type="hidden" class="form-control" value="${userLogin.email}"
-							name="email" id="email" placeholder="email" />
+						<input type="hidden" class="form-control"
+							value="${userLogin.email}" name="email" id="email"
+							placeholder="email" />
 					</div>
 					<input type="radio" name="type" value="item" id="type" /> <i
 						class="fa fa-4x fa-diamond text-primary sr-icons"

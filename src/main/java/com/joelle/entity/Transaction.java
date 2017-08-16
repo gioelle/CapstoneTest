@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name="transaction")
 public class Transaction {
@@ -18,6 +20,7 @@ public class Transaction {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name="id", updatable=false, nullable=false)
 	private long id;
+	@CreationTimestamp	
 	@Column(name="transaction_date")
 	private Timestamp date;
 	@Column(name="value")
@@ -31,10 +34,11 @@ public class Transaction {
 	@Column(name="email")
 	private String email;
 	
-	@OneToOne
-	@JoinColumn(name="email", insertable=false, updatable=false)
-	private User user;
+	//@OneToOne
+	//@JoinColumn(name="email", insertable=false, updatable=false)
+	//private User user;
 
+	public Transaction() {};
 	public Transaction(String email, String title, int value, String buyingUser, String type) {
 		this.email = email;
 		this.title = title;
@@ -103,19 +107,19 @@ public class Transaction {
 	}
 
 
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
-	public String toString() {
-		return  "*" + date + "," + value + "," + user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//
+//	public String toString() {
+//		return  "*" + date + "," + value + "," + user;
+//	}
 
 	public double getValue() {
 		return value;
