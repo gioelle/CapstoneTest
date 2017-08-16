@@ -63,6 +63,7 @@ public class PostingController {
 			model.addAttribute("myUserPost", (ArrayList<Posting>) personService.getUsersPosts(posting.getEmail()));
     		model.addAttribute("newPost", new Posting());
     		model.addAttribute("userLogin", personService.findByEmail(posting.getEmail()));
+    		getTransactions(model, posting.getEmail());
 			return "home";
 		} else {
 			model.addAttribute("error", "Please enter posting details");
@@ -119,6 +120,7 @@ public class PostingController {
 		User loggedInUser = (User) session.getAttribute("userLogin");
 		postingService.swap(postID, loggedInUser);
 		getPosts(model, loggedInUser.getEmail());
+		getTransactions(model, loggedInUser.getEmail());
 		ArrayList<Transaction> transactions = transactionService.getUsersTrans(loggedInUser.getEmail());		
 		model.addAttribute("transaction", transactions);
 		model.addAttribute("newPost", new Posting());
@@ -127,5 +129,9 @@ public class PostingController {
 	private void getPosts(Model model, String email) {
 		ArrayList<Posting> posts = personService.getUsersPosts(email);		
 		model.addAttribute("myUserPost", posts);
+	}
+	private void getTransactions(Model model, String email) {
+		ArrayList<Transaction> trans = transactionService.getUsersTrans(email);		
+		model.addAttribute("transactions", trans);
 	}
 }

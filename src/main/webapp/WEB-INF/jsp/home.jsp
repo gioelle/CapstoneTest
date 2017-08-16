@@ -154,53 +154,53 @@
 
 	<section id="services" style="padding: 50px; background-color: #faf6d0">
 		<div class="container">
-			<div class="row">
+			<div class="row" style="width: 100%">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading">Recent Transactions</h2>
-					<div class="col-lg-3 col-md-6 text-center" style="float-left">
-						<div class="service-box">
-							<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
-							<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i><br>
-							<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i><br>
-							<i class="fa fa-4x fa-heart text-primary sr-icons"></i><br>
-						</div>
-					</div>
-					
+					<hr class="primary">
+
 				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row" style="float:right">
-			<hr class="primary">
-				<table style="" class="table table-hover">
-					<c:choose>
-						<c:when test="${empty transactions}">
+				<div class="col-lg-3 col-md-6 text-center" style="width: 10%">
+					<div class="service-box">
+						<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
+						<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i><br>
+						<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i><br>
+						<i class="fa fa-4x fa-heart text-primary sr-icons"></i><br>
+					</div>
+				</div>
+				<div class="container" style="width: 80%">
+					<div class="row" style="float: right">
+						<table style="" class="table table-hover">
+							<c:choose>
+								<c:when test="${empty transactions}">
 							You don't have any past transactions.
 							</c:when>
-						<c:otherwise>
-							<tr>
-								<th style="text-align: center">Date</th>
-								<th style="text-align: center">Type</th>
-								<th style="text-align: center">Title</th>
-								<th style="text-align: center">Value</th>
-								<th style="text-align: center">Selling User</th>
-								<th style="text-align: center">Buying User</th>
+								<c:otherwise>
+									<tr>
+										<th style="text-align: center">Date</th>
+										<th style="text-align: center">Type</th>
+										<th style="text-align: center">Title</th>
+										<th style="text-align: center">Value</th>
+										<th style="text-align: center">Selling User</th>
+										<th style="text-align: center">Buying User</th>
 
-							</tr>
-							<c:forEach items="${transactions}" var="trans">
+									</tr>
+									<c:forEach items="${transactions}" var="trans">
 
-								<tr>
-									<td><c:out value="${trans.date}"></c:out></td>
-									<td><c:out value="${trans.type}"></c:out></td>
-									<td><c:out value="${trans.title}"></c:out></td>
-									<td><c:out value="${trans.value}"></c:out></td>
-									<td><c:out value="${trans.email}"></c:out></td>
-									<td><c:out value="${trans.buyingUser}"></c:out></td>
-								</tr>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-				</table>
+										<tr>
+											<td><c:out value="${trans.date}"></c:out></td>
+											<td><c:out value="${trans.type}"></c:out></td>
+											<td><c:out value="${trans.title}"></c:out></td>
+											<td><c:out value="${trans.value}"></c:out></td>
+											<td><c:out value="${trans.email}"></c:out></td>
+											<td><c:out value="${trans.buyingUser}"></c:out></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 
