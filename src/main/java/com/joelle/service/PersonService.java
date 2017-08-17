@@ -27,7 +27,8 @@ public class PersonService {
 	
 	@Transactional
 	public User login(String email, String password) {
-		return (User) entityManager.createNativeQuery(loginSql, User.class).setParameter("email", email).setParameter("password", password).getSingleResult();
+		return personRepository.login(email, password);
+//		return (User) entityManager.createNativeQuery(loginSql, User.class).setParameter("email", email).setParameter("password", password).getSingleResult();
 	}
 	
 	@SuppressWarnings("unchecked")

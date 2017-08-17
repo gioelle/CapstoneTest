@@ -103,9 +103,10 @@
 				<a href="#post" class="btn btn-primary btn-l page-scroll">New
 					post!</a> <br> <br>
 				<form class="search--search-home" action="search" method="POST">
-					<input type="search" name="term" value="" autocomplete="off"
-						class="js-term" placeholder="Search Postings" /> <br> <br>
-					<button type="submit" class="btn btn-primary btn-l page-scroll">Search!</button>
+					<!-- <input type="search" name="term" value="" autocomplete="off"
+						class="js-term" placeholder="Search Postings" /> <br> <br>-->
+					<button type="submit" class="btn btn-primary btn-l page-scroll">Search
+						Posts!</button>
 				</form>
 
 			</div>
@@ -168,38 +169,38 @@
 						<i class="fa fa-4x fa-heart text-primary sr-icons"></i><br>
 					</div>
 				</div>
-				<div class="container" style="width: 80%">
-					<div class="row" style="float: right">
-						<table style="" class="table table-hover">
-							<c:choose>
-								<c:when test="${empty transactions}">
-							You don't have any past transactions.
-							</c:when>
-								<c:otherwise>
-									<tr>
-										<th style="text-align: center">Date</th>
-										<th style="text-align: center">Type</th>
-										<th style="text-align: center">Title</th>
-										<th style="text-align: center">Value</th>
-										<th style="text-align: center">Selling User</th>
-										<th style="text-align: center">Buying User</th>
 
-									</tr>
-									<c:forEach items="${transactions}" var="trans">
-
+					<div class="container" style="width: 80%">
+						<div class="row" style="float: right">
+							<table style="" class="table table-hover">
+								<c:choose>
+									<c:when test="${empty transactions}">You don't have any past transactions.
+									</c:when>
+									<c:otherwise>
 										<tr>
-											<td><c:out value="${trans.date}"></c:out></td>
-											<td><c:out value="${trans.type}"></c:out></td>
-											<td><c:out value="${trans.title}"></c:out></td>
-											<td><c:out value="${trans.value}"></c:out></td>
-											<td><c:out value="${trans.email}"></c:out></td>
-											<td><c:out value="${trans.buyingUser}"></c:out></td>
+											<th style="text-align: center">Date</th>
+											<th style="text-align: center">Type</th>
+											<th style="text-align: center">Title</th>
+											<th style="text-align: center">Value</th>
+											<th style="text-align: center">Selling User</th>
+											<th style="text-align: center">Buying User</th>
+
 										</tr>
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</table>
-					</div>
+										<c:forEach items="${transactions}" var="trans">
+
+											<tr>
+												<td><c:out value="${trans.date}"></c:out></td>
+												<td><c:out value="${trans.type}"></c:out></td>
+												<td><c:out value="${trans.title}"></c:out></td>
+												<td><c:out value="${trans.value}"></c:out></td>
+												<td><c:out value="${trans.email}"></c:out></td>
+												<td><c:out value="${trans.buyingUser}"></c:out></td>
+											</tr>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
+							</table>
+						</div>
 				</div>
 			</div>
 		</div>

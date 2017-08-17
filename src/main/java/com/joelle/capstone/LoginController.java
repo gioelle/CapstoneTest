@@ -79,7 +79,7 @@ public class LoginController {
 		User u = this.personService.login(userLogin.getEmail(), userLogin.getPassword());
 	
 		if(u == null) {
-			model.addAttribute("loginError", "username or password invalid");
+			model.addAttribute("loginError", "invalid username or password");
 			return "about";
 		} else {
 			ArrayList<Posting> posts = personService.getUsersPosts(userLogin.getEmail());		

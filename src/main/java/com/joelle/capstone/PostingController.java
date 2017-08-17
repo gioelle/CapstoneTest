@@ -33,10 +33,7 @@ public class PostingController {
 	TransactionService transactionService;
 	@Autowired
 	PersonService personService;
-	@Autowired
-	private SendMail emailService;
-	private final static String swapMessage = "You've just initiated a swap with INSERT POSTING USER HERE";
-	private final static String swapSubject = "Thank you for Swapping!";
+
 	
 	@RequestMapping(value = "/CreatePosting", method = RequestMethod.POST)
 	public String submit(Model model, @ModelAttribute("posting") Posting posting,
@@ -59,7 +56,6 @@ public class PostingController {
 				}
 			}
 			postingService.save(posting);
-//			model.addAttribute(posting);
 			model.addAttribute("myUserPost", (ArrayList<Posting>) personService.getUsersPosts(posting.getEmail()));
     		model.addAttribute("newPost", new Posting());
     		model.addAttribute("userLogin", personService.findByEmail(posting.getEmail()));
@@ -117,6 +113,8 @@ public class PostingController {
 
 	@RequestMapping(value="/swapPost", method=RequestMethod.POST)
 	public String processSwap(Model model, @RequestParam("postId")Long postID, HttpSession session) {
+		Posting post = postingService.findByID(postID);
+		User postedUser = (User) personService.findByEmail(post.getEmail());
 		User loggedInUser = (User) session.getAttribute("userLogin");
 		postingService.swap(postID, loggedInUser);
 		getPosts(model, loggedInUser.getEmail());
@@ -124,8 +122,10 @@ public class PostingController {
 		ArrayList<Transaction> transactions = transactionService.getUsersTrans(loggedInUser.getEmail());		
 		model.addAttribute("transaction", transactions);
 		model.addAttribute("newPost", new Posting());
+		postingService.createMail(loggedInUser, postedUser, post);
 		return "home";
 	}
+
 	private void getPosts(Model model, String email) {
 		ArrayList<Posting> posts = personService.getUsersPosts(email);		
 		model.addAttribute("myUserPost", posts);

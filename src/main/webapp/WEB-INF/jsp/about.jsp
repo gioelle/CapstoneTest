@@ -174,6 +174,7 @@
 					<form:form class="container" action="login" method="post"
 						modelAttribute="userLogin" style="width: 20%">
 						<h3>Welcome Back!</h3>
+						<span style="color:red"><c:out value="${loginError}"></c:out></span>
 						<div class="form-group">
 							<form:label path="email">Email</form:label>
 							<form:input path="email" class="form-control" name="userName"
@@ -184,8 +185,7 @@
 							<form:input path="password" type="password" class="form-control"
 								name="password" id="password" placeholder="password"></form:input>
 						</div>
-						<button type="submit" class="btn btn-default">To my
-							account!</button>
+						<button type="submit" class="btn btn-default">To my account!</button>
 						<!--  <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-sm sr-button"><button type="submit" class="btn btn-default"></button></a> -->
 					</form:form>
 				</div>

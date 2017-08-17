@@ -103,6 +103,8 @@ public class HomeController {
 		ArrayList<Transaction> trans = transactionService.getUsersTrans(email);		
 		model.addAttribute("transactions", trans);
 	}
+	
+		
 }
 
 
