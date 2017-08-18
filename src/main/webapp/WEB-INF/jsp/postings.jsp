@@ -16,7 +16,8 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="postings/css/bootstrap.min.css" rel="stylesheet">
-
+<!-- Theme CSS -->
+<link href="home/css/creative.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="postings/css/shop-homepage.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,14 +26,32 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<link href="home/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
+<!-- Custom Fonts -->
+<link href="home/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+
+<!-- Plugin CSS -->
+<link href="home/vendor/magnific-popup/magnific-popup.css"
+	rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="home/css/creative.css" rel="stylesheet">
 </head>
 
 <body>
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
-		style="background-color: #002f34">
+	<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top"
+		role="navigation" style="background-color: #002f34">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -68,12 +87,20 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead" style="color: white">SwaProcity</p>
+				<p class="lead" id="homeHeading" style="color: white">SwaProcity</p>
 				<div class="list-group">
-					<a href="item" class="list-group-item">Items</a> <a href="service"
-						class="list-group-item">Services</a> <a href="resource"
-						class="list-group-item">Resources</a> <a href="all"
-						class="list-group-item">All</a>
+					<i class="fa fa-4x fa-diamond text-primary sr-icons" style="color:white"></i><br><br><a
+						href="item" class="btn btn-primary btn-l page-scroll">Items</a><br>
+					<br> <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"style="color:white"></i><br><br><a
+						href="service" class="btn btn-primary btn-l page-scroll">Services</a><br>
+					<br> <i class="fa fa-4x fa-paper-plane text-primary sr-icons"style="color:white"></i><br><br>
+					<a href="resource" class="btn btn-primary btn-l page-scroll">Resources</a><br>
+					<br> <i class="fa fa-4x fa-heart text-primary sr-icons"style="color:white"></i><br><br><a
+						href="all" class="btn btn-primary btn-l page-scroll">All</a><br>
+					<br>
+
+
+
 
 				</div>
 			</div>
@@ -82,92 +109,63 @@
 
 				<div class="row carousel-holder">
 
-					<div class="col-md-12">
-						<div id="carousel-example-generic" class="carousel slide"
-							data-ride="carousel">
-							<ol class="carousel-indicators">
-								<li data-target="#carousel-example-generic" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="item active">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-							</div>
-							<a class="left carousel-control" href="#carousel-example-generic"
-								data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left"></span>
-							</a> <a class="right carousel-control"
-								href="#carousel-example-generic" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span>
-							</a>
-						</div>
-					</div>
+					<div class="col-md-12"></div>
 
 				</div>
 				<c:forEach var="post" items="${post}">
 					<c:if test="${post.instances>0}">
 						<!--  this is just one post message from here....  -->
 						<!--<div class="row"> -->
-							<div class="col-sm-5">
-								<div class="well"
-									style="height: 400px; margin-bottom: 5px; overflow: auto;"
-									id="postHolder">
+						<div class="col-sm-5">
+							<div class="well"
+								style="height: 400px; margin-bottom: 5px; overflow: auto;"
+								id="postHolder">
+								<div>
 									<div>
-										<div>
-											<p>
-												Title: <span style="font-weight: bold"><c:out value="${post.title}"/></span>
-											</p>
-											<hr style="margin-top: 10px; margin-bottom: 10px">
-											<p>
-												Type: <span style="font-weight: bold"><c:out
-														value="${post.type}" /></span>
-											</p>
-											<hr style="margin-top: 10px; margin-bottom: 10px">
-											<p>
-												Description: <br> <span style="font-weight: bold"><c:out
-														value="${post.description}" /></span>
-											</p>
-											<p>
-												<br> <img src="${post.picture}" height="100%"
-													width="100%" alt="Post Image">
-											</p>
-											<p>
-												SwaPoints: <span style="font-weight: bold"><c:out
-														value="${post.value}" /></span>
-											</p>
-											<img src="${post.user.profilePic}" class="img-circle"
-												height="55" width="55" alt="Avatar"> <br>
-											<p>
-												Posted by: <span style="font-weight: bold"><c:out
-														value="${post.user.firstName}" /></span>
-											</p>
-											User rating: <span style="font-weight: bold"><c:out
-													value="${post.user.rating}" /></span> <br> <br>
-										</div>
+										<p>
+											Title: <span style="font-weight: bold"><c:out
+													value="${post.title}" /></span>
+										</p>
+										<hr style="margin-top: 10px; margin-bottom: 10px">
+										<p>
+											Type: <span style="font-weight: bold"><c:out
+													value="${post.type}" /></span>
+										</p>
+										<hr style="margin-top: 10px; margin-bottom: 10px">
+										<p>
+											Description: <br> <span style="font-weight: bold"><c:out
+													value="${post.description}" /></span>
+										</p>
+										<p>
+											<br> <img src="${post.picture}" height="100%"
+												width="100%" alt="Post Image">
+										</p>
+										<p>
+											SwaPoints: <span style="font-weight: bold"><c:out
+													value="${post.value}" /></span>
+										</p>
+										<img src="${post.user.profilePic}" class="img-circle"
+											height="55" width="55" alt="Avatar"> <br>
+										<p>
+											Posted by: <span style="font-weight: bold"><c:out
+													value="${post.user.firstName}" /></span>
+										</p>
+										User rating: <span style="font-weight: bold"><c:out
+												value="${post.user.rating}" /></span> <br> <br>
 									</div>
 								</div>
-								<div class="button"
-									style="text-align: center; font: bold; margin-top: 10px; margin-bottom: 50px;">
-									<form action="swapPost" method="Post">
-									<input type="hidden" value="${post.id}" name="postId"/>
-									<button id="swapButton" type="submit" class="btn btn-default btn-sm;" 
-									style="button-align: center; height: 1.42857143; font-weight: bold;">
-										Swap!</button>
-										</form>
-								</div>
 							</div>
+							<div class="button"
+								style="text-align: center; font: bold; margin-top: 10px; margin-bottom: 50px;">
+								<form action="swapPost" method="Post">
+									<input type="hidden" value="${post.id}" name="postId" />
+									<button id="swapButton" type="submit"
+										class="btn btn-primary btn-l page-scroll"
+										style="button-align: center; height: 1.42857143; font-weight: bold;">
+										Swap!</button>
+								</form>
+							</div>
+						</div>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -176,8 +174,6 @@
 	<!-- /.container -->
 
 	<div class="container">
-
-		<hr>
 
 		<!-- Footer -->
 		<footer>

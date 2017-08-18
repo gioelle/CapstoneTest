@@ -40,6 +40,9 @@ public class HomeController {
 
 	@RequestMapping(value="/home", method=RequestMethod.GET)
 	public String toHome(Model model, HttpSession session) {
+		if(session.getAttribute("userLogin") == null) {
+			return "about";
+		}
 		User userLogin = (User) session.getAttribute("userLogin");
 		getPosts(model, userLogin.getEmail());
 		getTransactions(model, userLogin.getEmail());
@@ -92,6 +95,13 @@ public class HomeController {
 		getPosts(model, userLogin.getEmail());
 		getTransactions(model, userLogin.getEmail());
 		return "home";
+	}
+	
+	@RequestMapping(value="/rate", method=RequestMethod.GET)
+	public String rateButtonHandler(Model model, @RequestParam("ratedUser")String email, HttpSession session) {
+		User userToRate = personService.findByEmail(email);
+		
+		return "rating";
 	}
 	
 	private void getPosts(Model model, String email) {

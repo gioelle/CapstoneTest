@@ -160,7 +160,7 @@
 					<h2 class="section-heading">Recent Transactions</h2>
 					<hr class="primary">
 
-				</div>
+				</div>	
 				<div class="col-lg-3 col-md-6 text-center" style="width: 10%">
 					<div class="service-box">
 						<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
@@ -170,37 +170,51 @@
 					</div>
 				</div>
 
-					<div class="container" style="width: 80%">
-						<div class="row" style="float: right">
-							<table style="" class="table table-hover">
-								<c:choose>
-									<c:when test="${empty transactions}">You don't have any past transactions.
+				<div class="container" style="width: 80%">
+					<div class="row" style="float: right">
+						<table style="" class="table table-hover">
+							<c:choose>
+								<c:when test="${empty transactions}">You don't have any past transactions.
 									</c:when>
-									<c:otherwise>
-										<tr>
-											<th style="text-align: center">Date</th>
-											<th style="text-align: center">Type</th>
-											<th style="text-align: center">Title</th>
-											<th style="text-align: center">Value</th>
-											<th style="text-align: center">Selling User</th>
-											<th style="text-align: center">Buying User</th>
+								<c:otherwise>
+									<tr>
+										<th style="text-align: center">Date</th>
+										<th style="text-align: center">Type</th>
+										<th style="text-align: center">Title</th>
+										<th style="text-align: center">Value</th>
+										<th style="text-align: center">Selling User</th>
+										<th style="text-align: center">Buying User</th>
 
-										</tr>
-										<c:forEach items="${transactions}" var="trans">
-
+									</tr>
+									<c:forEach items="${transactions}" var="trans">
+										<form method="GET" action="rate">
 											<tr>
 												<td><c:out value="${trans.date}"></c:out></td>
 												<td><c:out value="${trans.type}"></c:out></td>
 												<td><c:out value="${trans.title}"></c:out></td>
 												<td><c:out value="${trans.value}"></c:out></td>
-												<td><c:out value="${trans.email}"></c:out></td>
-												<td><c:out value="${trans.buyingUser}"></c:out></td>
+												<td><c:if test="${userLogin.email == trans.email}">
+														<input type="hidden" name="ratedUser"
+															value="${trans.buyingUser}">Me</c:if> <c:if
+														test="${userLogin.email != trans.email}">
+														<c:out value="${trans.email}"></c:out>
+													</c:if></td>
+												<td><c:if test="${userLogin.email == trans.buyingUser}">
+														<input type="hidden" name="ratedUser"
+															value="${trans.email}">Me</c:if> <c:if
+														test="${userLogin.email != trans.buyingUser}">
+														<c:out value="${trans.buyingUser}"></c:out>
+													</c:if></td>
+												<td>
+												<button type="submit" name="rate" class="btn btn-primary btn-l page-scroll">Rate
+														it!</button>
 											</tr>
-										</c:forEach>
-									</c:otherwise>
-								</c:choose>
-							</table>
-						</div>
+										</form>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -208,7 +222,7 @@
 	</section>
 
 	<section id="post" style="background-color: #222">
-		<aside class="bg-dark" style="padding: 50px; height: 700px">
+		<aside class="bg-dark" style="padding: 20px; height: 700px">
 			<h1 style="align: center; color: #f05f40">SwaPosting</h1>
 			<div class="bg-dark" style="width: 100%">
 				<form action="CreatePosting" method="POST"
@@ -298,8 +312,9 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Let's Get In Touch!</h2>
-					<img src="resources/index/img/Reciprocity.jpg"
-						class="img-responsive" style="max-width: 75%; margin: auto" alt="">
+					<img src="static/home/img/Reciprocity.jpg"
+						class="img-responsive" style="max-width: 75%; margin: auto"
+						alt="SwaProcity Logo">
 					<hr class="primary">
 					<p>Have questions, suggestions, or requests?</p>
 				</div>
@@ -310,7 +325,7 @@
 				<div class="col-lg-4 text-center">
 					<i class="fa fa-envelope-o fa-3x sr-contact"></i>
 					<p>
-						<a href="mailto:your-email@your-domain.com">fronsaglia@gmail.com</a>
+						<a href="mailto:your-email@your-domain.com">Fronsaglia@Gmail.Com</a>
 					</p>
 				</div>
 			</div>

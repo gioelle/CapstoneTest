@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SwaProcity</title>
+<title>SwaProcity Rating</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="postings/css/bootstrap.min.css" rel="stylesheet">

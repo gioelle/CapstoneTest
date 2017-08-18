@@ -63,7 +63,10 @@ public class LoginController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, HttpSession session) {
+		if(session.getAttribute("userLogin") != null) {
+			return "home";
+		}
 			model.addAttribute("userLogin", new User());
 		return "about";
 	}
