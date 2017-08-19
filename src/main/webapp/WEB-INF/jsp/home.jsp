@@ -80,7 +80,7 @@
 		<div class="header-content">
 			<div class="header-content-inner">
 				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
-				<img src="${userLogin.profilePic}" class="img-circle" height="155px"
+				<img src="data:image/png;base64, ${userLogin.getBytes()}" class="img-circle" height="155px"
 					width="155px" alt=""> <br>
 				<form action="uploadProfile" method="POST"
 					enctype="multipart/form-data">

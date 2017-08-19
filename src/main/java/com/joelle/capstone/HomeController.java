@@ -64,7 +64,7 @@ public class HomeController {
 				String profilePath = "/img/" + userLogin.getEmail() + "/" + fileName;
 				File fileToUpload = new File(uploadPath);
 		//		FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
-				userLogin.setProfilePic(BlobProxy.generateProxy(file.getBytes()));
+				userLogin.setProfilePic(file.getBytes());  //BlobProxy.generateProxy
 				personService.save2(userLogin);
 				session.setAttribute("loggedInUser", userLogin);
 				
@@ -96,12 +96,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/rate", method=RequestMethod.GET)
-	public String rateButtonHandler(Model model, @RequestParam("ratedUser")String email, HttpSession session) {
-		User userToRate = personService.findByEmail(email);
-		model.addAttribute("ratedUser", userToRate);
-		return "rating";
-	}
+
 	
 	private void getPosts(Model model, String email) {
 		ArrayList<Posting> posts = personService.getUsersPosts(email);		

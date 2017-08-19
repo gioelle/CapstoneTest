@@ -56,6 +56,27 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<script>
+var rat0 = document.getElementsByName("comm");
+var rat1 = document.getElementsByName("acc");
+var rat2 = document.getElementsByName("over");
+var commRating = 0;
+var avgRating;
+
+for(var i = 0; i < rat0.length; i++) {
+   if(rat0[i].checked)
+       commRating += rat0[i].value;
+ }
+for(var i = 0; i < rat1.length; i++) {
+	   if(rat1[i].checked)
+	       commRating += rat1[i].value;
+	 }
+for(var i = 0; i < rat2.length; i++) {
+	   if(rat2[i].checked)
+	       commRating += rat2[i].value;
+	 }
+return avgRating = commRating/3;
+</script>
 
 </head>
 
@@ -126,6 +147,7 @@
 						id="over" name="over"> 4<input type="radio" value=4
 						id="over" name="over"> 5<input type="radio" value=5
 						id="over" name="over"><br>
+						<input type="hidden" value="avgRating">
 					<button type="submit" class="btn btn-primary btn-l page-scroll"
 						style="color: white; background-color: #F05F40;">Rate!</button>
 				</form>

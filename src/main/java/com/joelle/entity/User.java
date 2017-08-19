@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,7 +29,7 @@ public class User {
 	
 	@Column(name="password")
 	private String password;
-	
+	//@Lob
 	@Column(name="profile_pic")
 	private Blob profilePic; 
 	
@@ -106,7 +107,25 @@ public class User {
 
 	public void setProfilePic(Blob profilePic) {
 		this.profilePic = profilePic;
+	
+
 	}
+
+//	public byte[] getProfilePic() {
+//		return profilePic;
+//	}
+//
+//	public void setProfilePic(byte[] profilePic) {
+//		this.profilePic = profilePic;
+//	}
+//	public String getBytes() {
+//		String result = "";
+//		for(byte b: profilePic) {
+//			result += b;
+//		}
+//		return result;
+//		
+//	}
 
 	public int getSwaPointsBalance() {
 		return swaPointsBalance;
