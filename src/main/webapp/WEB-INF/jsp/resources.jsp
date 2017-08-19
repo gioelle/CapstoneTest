@@ -18,8 +18,7 @@
 	rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link
-	href="index/vendor/font-awesome/css/font-awesome.min.css"
+<link href="index/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <link
@@ -56,18 +55,19 @@
 					<span class="sr-only">Toggle navigation</span> Menu <i
 						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand page-scroll" href="#page-top">SwaProcity
-					Home</a>
+				<a class="navbar-brand page-scroll" href="about">SwaProcity Home</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="page-scroll" href="#about">About</a></li>
-					<li><a class="page-scroll" href="#why">Why SwaP?</a></li>
-					<li><a class="page-scroll" href="resources">Resources</a></li>
-					<li><a class="page-scroll" href="#register">Login/Sign Up</a></li>
+					<li><a class="page-scroll" href="#centers">Recycling
+							Centers</a></li>
+					<li><a class="page-scroll" href="#thrift">Thrift &
+							Upcycling</a></li>
+					<li><a class="page-scroll" href="#points">SwaPoints FAQ</a></li>
+					<li><a class="page-scroll" href="about">Register</a></li>
 					<li><a class="page-scroll" href="#contact">Contact</a></li>
 				</ul>
 			</div>
@@ -81,21 +81,28 @@
 			<div class="header-content-inner">
 				<h1 id="homeHeading">SwaProcity</h1>
 				<hr>
-				<h3 style="font-style: oblique; font-weight:bold; color: #09b893; font-size: 25px">
+				<h3
+					style="font-style: oblique; font-weight: bold; color: #09b893; font-size: 25px">
 					Invest in <span style="color: yellow; font-size: 35px">[
 						YOUR COMMUNITY ]</span> Invests in You
 				</h3>
-				<a href="#about" class="btn btn-primary btn-xl page-scroll">Find
-					Out More</a>
+				<br> <a href="#centers"
+					class="btn btn-primary btn-xl page-scroll">Find Local Recycling
+					Centers</a><br>
+				<br> <a href="#thrift"
+					class="btn btn-primary btn-xl page-scroll">Thrift & Upcycling</a><br>
+				<br> <a href="#points"
+					class="btn btn-primary btn-xl page-scroll">SwaPoints FAQ</a><br>
+
 			</div>
 		</div>
 	</header>
 
-	<section class="bg-primary" id="why">
+	<section class="bg-primary" id="centers">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
-					<h2 class="section-heading">Why SwaProcity?</h2>
+					<h2 class="section-heading">Regional Recycling Centers</h2>
 					<hr class="light">
 					<p class="text-faded">Here's a helpful video to help you
 						understand why consuming fewer new goods might be a good idea. No
@@ -104,26 +111,57 @@
 						items, reusable resources, and bartering for services within your
 						community.</p>
 					<div style="position: relative; height: 0; padding-bottom: 56.25%">
-						<iframe src="https://www.youtube.com/embed/3eWBg8ojno4?ecver=2"
-							width="640" height="360" frameborder="0"
-							style="position: absolute; width: 100%; height: 100%; left: 0"
+						<iframe width="560" height="315"
+							src="https://www.youtube.com/embed/jobDjAb2VPM" frameborder="0"
 							allowfullscreen></iframe>
 					</div>
-					<br> <a href="#services"
-						class="page-scroll btn btn-default btn-xl sr-button">Get
-						Started!</a>
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
+
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner">
+							<div class="item active">
+								<a href="http://www.midmorecycling.com"><img src="/static/home/img/midmo.png" alt="Mid Mo Recycling"></a>
+							</div>
+
+							<div class="item">
+								<img src="chicago.jpg" alt="Chicago">
+							</div>
+
+							<div class="item">
+								<img src="ny.jpg" alt="New York">
+							</div>
+						</div>
+
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right"></span> <span
+							class="sr-only">Next</span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="about" style="padding: 25px; background-color: #faf6d0">
+	<section id="thrift" style="padding: 25px; background-color: #faf6d0">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading">What is SwaProcity?</h2>
-					<p class="text-muted">SwaProcity is a virtual currency for local
-						barter of items, services, and resources. It is what you make it.</p>
+					<p class="text-muted">SwaProcity is a virtual currency for
+						local barter of items, services, and resources. It is what you
+						make it.</p>
 					<hr class="primary">
 				</div>
 			</div>
@@ -168,77 +206,62 @@
 		</div>
 	</section>
 
-	<section id="register" class="bg-dark">
+	<section id="points" class="bg-dark">
 		<aside class="bg-dark">
 			<div class="container text-center">
 				<div class="call-to-action">
-					<form:form class="container" action="login" method="post"
+					<form class="container" action="login" method="post"
 						modelAttribute="userLogin" style="width: 20%">
 						<h3>Welcome Back!</h3>
-						<span style="color:red"><c:out value="${loginError}"></c:out></span>
+						<span style="color: red"><c:out value=""></c:out></span>
 						<div class="form-group">
-							<form:label path="email">Email</form:label>
-							<form:input path="email" class="form-control" name="userName"
-								id="username" placeholder="email"></form:input>
+							<label path="email">Email</label> <input path="email"
+								class="form-control" name="userName" id="username"
+								placeholder="email"></input>
 						</div>
 						<div class="form-group">
-							<form:label path="password">Top-Secret Unsharable KeyPhrase here:</form:label>
-							<form:input path="password" type="password" class="form-control"
-								name="password" id="password" placeholder="password"></form:input>
+							<label path="password">Top-Secret Unsharable KeyPhrase
+								here:</label> <input path="password" type="password"
+								class="form-control" name="password" id="password"
+								placeholder="password"></input>
 						</div>
-						<button type="submit" class="btn btn-default">To my account!</button>
+						<button type="submit" class="btn btn-default">To my
+							account!</button>
 						<!--  <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-sm sr-button"><button type="submit" class="btn btn-default"></button></a> -->
-					</form:form>
+					</form>
 				</div>
 				<br> <br> <br>
 				<div class="container text-center">
-					<form:form class="container" action="register" method="post"
-						modelAttribute="userLogin" style="width:40%">
+					<form class="container" action="register" method="post"
+						modelAttribute="userLogin" style="width: 40%">
 						<h3>Not yet in the club? Sign up here!</h3>
 						<div class="form-group">
-							<form:label path="firstName">First Name</form:label>
-							<form:input path="firstName" type="text" class="form-control"
-								name="firstName" id="firstName" placeholder="Jane"></form:input>
+							<label path="firstName">First Name</label> <input
+								path="firstName" type="text" class="form-control"
+								name="firstName" id="firstName" placeholder="Jane"></input>
 						</div>
 						<div class="form-group">
-							<form:label path="lastName">Last Name</form:label>
-							<form:input path="lastName" type="text" class="form-control"
-								name="lastName" id="lastName" placeholder="Doe"></form:input>
+							<label path="lastName">Last Name</label> <input path="lastName"
+								type="text" class="form-control" name="lastName" id="lastName"
+								placeholder="Doe"></input>
 						</div>
 						<div class="form-group">
-							<form:label path="email">Email</form:label>
-							<form:input path="email" type="email" class="form-control"
-								name="username" id="email" placeholder="janeDoe@camelCase.com"></form:input>
-						</div>
-
-						<div class="form-group">
-							<form:label path="password">Password</form:label>
-							<form:input path="password" type="password" class="form-control"
-								name="password" id="password"
-								placeholder="s0m3t#ingComp!ex&un1que"></form:input>
+							<label path="email">Email</label> <input path="email"
+								type="email" class="form-control" name="username" id="email"
+								placeholder="janeDoe@camelCase.com"></input>
 						</div>
 
 						<div class="form-group">
-							<form:label path="address.streetAddress">Street Address</form:label>
-							<form:input path="address.streetAddress" type="text"
-								class="form-control" name="streetAddress" id="streetAddress"
-								placeholder="123 Rebel Avenue"></form:input>
+							<label path="password">Password</label> <input path="password"
+								type="password" class="form-control" name="password"
+								id="password" placeholder="s0m3t#ingComp!ex&un1que"></input>
 						</div>
+
 						<div class="form-group">
-							<form:label path="address.city">City</form:label>
-							<form:input path="address.city" type="text" class="form-control"
-								name="city" id="city" placeholder="Rock City"></form:input>
-						</div>
-						<div class="form-group">
-							<form:label path="address.state">State</form:label>
-							<form:input path="address.state" type="text" class="form-control"
-								name="state" id="state" placeholder="Ofmind"></form:input>
-						</div>
-						<div class="form-group">
-							<form:label path="address.zipcode">Zip Code</form:label>
-							<form:input path="address.zipcode" type="text"
-								class="form-control" name="zipCode" id="zipCode"
-								placeholder="8675309"></form:input>
+							<label path="address.streetAddress">Street Address</label> <input
+								path="address.streetAddress" type="text" class="form-control"
+								name="streetAddress" id="streetAddress"
+								placeholder="123 Rebel Avenue"></input>
 						</div>
 						<div class="checkbox">
 							<label> <input type="checkbox">I agree to the
@@ -248,7 +271,7 @@
 						</div>
 						<button type="submit" class="btn btn-default">Let's do
 							this.</button>
-					</form:form>
+					</form>
 				</div>
 			</div>
 		</aside>
@@ -258,8 +281,8 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Let's Get In Touch!</h2>
-					<img src="index/img/Reciprocity.jpg"
-						class="img-responsive" style="max-width: 75%; margin: auto" alt="">
+					<img src="index/img/Reciprocity.jpg" class="img-responsive"
+						style="max-width: 75%; margin: auto" alt="">
 					<hr class="primary">
 					<p>Have questions, suggestions, or requests?</p>
 				</div>

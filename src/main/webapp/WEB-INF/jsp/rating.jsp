@@ -57,6 +57,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
+function calculateAverage(){
 var rat0 = document.getElementsByName("comm");
 var rat1 = document.getElementsByName("acc");
 var rat2 = document.getElementsByName("over");
@@ -75,7 +76,9 @@ for(var i = 0; i < rat2.length; i++) {
 	   if(rat2[i].checked)
 	       commRating += rat2[i].value;
 	 }
-return avgRating = commRating/3;
+avgRating=commRating/3;
+document.getElementsById("avgRating").value=avgRating;
+}
 </script>
 
 </head>
@@ -119,7 +122,7 @@ return avgRating = commRating/3;
 	<section class="header-content-inner" style="text-align: center">
 		<div class="header-content" style="color: white">
 			<div class="header-content-inner">
-				<form method="post" action="rateUser">
+				<form method="get" action="rateUser">
 					<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
 					<h2>Thank you for rating your experience swapping with
 						${ratedUser.firstName}.</h2>
@@ -147,8 +150,8 @@ return avgRating = commRating/3;
 						id="over" name="over"> 4<input type="radio" value=4
 						id="over" name="over"> 5<input type="radio" value=5
 						id="over" name="over"><br>
-						<input type="hidden" value="avgRating">
-					<button type="submit" class="btn btn-primary btn-l page-scroll"
+						<input type="hidden" value="avgRating" id="avgRating" placeholder=avgRating>
+					<button type="submit" onclick="calculateAverage()" class="btn btn-primary btn-l page-scroll"
 						style="color: white; background-color: #F05F40;">Rate!</button>
 				</form>
 				<hr>

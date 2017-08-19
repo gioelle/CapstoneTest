@@ -151,9 +151,9 @@ public static String buildSwapSellerEmail(User loggedInUser, User postedUser, Po
 			"<![endif]--><div class=\"mobile-full\" style=\"display: inline-block; max-width: 414px; vertical-align: top; width: 100%;\"> \r\n" + 
 			"\r\n" + 
 			"                    <table class=\"vb-content\" border=\"0\" cellspacing=\"9\" cellpadding=\"0\" width=\"414\" align=\"left\" style=\"border-collapse: separate;width: 100%;\"><tbody><tr><td style=\"font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: left;\">\r\n" + 
-			"                          <span style=\"color: #3f3f3f;\">Rate "+loggedInUser.getFirstName()+"</span>\r\n" + 
+			"                          <span style=\"color: #3f3f3f;\">Rate "+postedUser.getFirstName()+"</span>\r\n" + 
 			"                        </td>\r\n" + 
-			"                      </tr><tr><td align=\"left\" class=\"long-text links-color\" style=\"text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;\"><p style=\"margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;\">After the swap has been completed, please rate your interaction based on how communicating and interacting with "+loggedInUser.getFirstName()+" went.<br></p></td>\r\n" + 
+			"                      </tr><tr><td align=\"left\" class=\"long-text links-color\" style=\"text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;\"><p style=\"margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;\">After the swap has been completed, please visit your home page rate your interaction based on how communicating and interacting with "+postedUser.getFirstName()+" went.<br></p></td>\r\n" + 
 			"                      </tr><tr><td valign=\"top\">\r\n" + 
 			"                          <table cellpadding=\"0\" border=\"0\" align=\"left\" cellspacing=\"0\" class=\"mobile-full\" style=\"padding-top: 4px;\"><tbody><tr><td width=\"auto\" valign=\"middle\" bgcolor=\"#F05F40\" align=\"center\" height=\"26\" style=\"font-size: 13px; font-family: Arial, Helvetica, sans-serif; text-align: center; color: #3f3f3f; font-weight: normal; padding-left: 18px; padding-right: 18px; background-color: #F05F40; border-radius: 4px;\">\r\n" + 
 			"                                <a style=\"text-decoration: none; color: #3f3f3f; font-weight: normal;\" target=\"_new\" href=\"\">BUTTON</a>\r\n" + 
@@ -190,7 +190,7 @@ public static String buildSwapSellerEmail(User loggedInUser, User postedUser, Po
 			"\r\n" + 
 			"                    <table class=\"vb-content\" border=\"0\" cellspacing=\"9\" cellpadding=\"0\" width=\"414\" align=\"center\" style=\"border-collapse: separate;width: 100%;\"><tbody>\r\n" + 
 			"                        <td style=\"font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: center;\">\r\n" + 
-			"                          <span style=\"color: #3f3f3f;\">Your SwaPoints: "+postedUser.getSwaPointsBalance()+"\r\n" + 
+			"                          <span style=\"color: #3f3f3f;\">Your SwaPoints: "+loggedInUser.getSwaPointsBalance()+"\r\n" + 
 			"                        </td>\r\n" + 
 			"                        </tbody></table></td>\r\n" + 
 			"                      </tr></tbody></table></div><!--[if (gte mso 9)|(lte ie 8)]></td>\r\n" + 

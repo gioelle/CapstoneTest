@@ -64,7 +64,6 @@ public class HomeController {
 				File fileToUpload = new File(uploadPath);
 				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
 
-				System.out.println("Profile Pic path:  "+profilePath);
 				userLogin.setProfilePic(profilePath);
 				personService.save2(userLogin);
 				session.setAttribute("loggedInUser", userLogin);
@@ -97,6 +96,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/resources", method=RequestMethod.GET)
+	public String toResourcesPage(HttpSession session) {
+		User userLogin = (User) session.getAttribute("userLogin");
+		return "resources";
+	}
+	
+	
 	private void getPosts(Model model, String email) {
 		ArrayList<Posting> posts = personService.getUsersPosts(email);		
 		model.addAttribute("myUserPost", posts);
@@ -106,9 +112,10 @@ public class HomeController {
 		ArrayList<Transaction> trans = transactionService.getUsersTrans(email);		
 		model.addAttribute("transactions", trans);
 	}
-	
+
 		
 }
+
 
 
  

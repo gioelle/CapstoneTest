@@ -1,5 +1,7 @@
 package com.joelle.capstone;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,13 @@ public class RatingController {
 		User userToRate = personService.findByEmail(email);
 		model.addAttribute("ratedUser", userToRate);
 		return "rating";
+	}
+	
+	@RequestMapping(value="/rateUser", method=RequestMethod.GET)
+	public String ratingsHandler(Model model, @RequestParam("ratedUser")String email, @RequestParam("avgRating") Double avgRating, HttpSession session) {
+		User userToRate = personService.findByEmail(email);
+		userToRate.getRating().add(avgRating);
+		return "home";
 	}
 	
 }
