@@ -18,6 +18,37 @@
 <link href="postings/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
+<!-- Bootstrap Core CSS -->
+<link href="postings/css/bootstrap.min.css" rel="stylesheet">
+<!-- Theme CSS -->
+<link href="home/css/creative.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="postings/css/shop-homepage.css" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<link href="home/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="home/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+
+<!-- Plugin CSS -->
+<link href="home/vendor/magnific-popup/magnific-popup.css"
+	rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="home/css/creative.css" rel="stylesheet">
 <link href="postings/css/shop-homepage.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,7 +76,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">SwaProcity: Rate Your Swap Experience</a>
+				<a class="navbar-brand" href="#">SwaProcity</a>
 
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,68 +93,48 @@
 		<!-- /.container -->
 	</nav>
 
-	<!-- Page Content -->
-	<div class="container">
+	<!--! SwaProcity<br> Rate Your Swap Experience</p> -->
 
-		<div class="row">
-
-			<div class="col-md-3">
-				<p class="lead" style="color: white">SwaProcity</p>
-				<div class="list-group">
-					<a href="item" class="list-group-item">Items</a> <a href="service"
-						class="list-group-item">Services</a> <a href="resource"
-						class="list-group-item">Resources</a> <a href="all"
-						class="list-group-item">All</a>
-
-				</div>
-			</div>
-
-			<div class="col-md-9">
-
-				<div class="row carousel-holder">
-
-					<div class="col-md-12">
-						<div id="carousel-example-generic" class="carousel slide"
-							data-ride="carousel">
-							<ol class="carousel-indicators">
-								<li data-target="#carousel-example-generic" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-								<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="item active">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-								<div class="item">
-									<img class="slide-image" src="http://placehold.it/800x300"
-										alt="">
-								</div>
-							</div>
-							<a class="left carousel-control" href="#carousel-example-generic"
-								data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left"></span>
-							</a> <a class="right carousel-control"
-								href="#carousel-example-generic" data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span>
-							</a>
-						</div>
-					</div>
-
-				</div>
+	<section class="header-content-inner" style="text-align: center">
+		<div class="header-content" style="color: white">
+			<div class="header-content-inner">
+				<form method="post" action="rateUser">
+					<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
+					<h2>Thank you for rating your experience swapping with
+						${ratedUser.firstName}.</h2>
+					<img src="${ratedUser.profilePic}" class="img-circle"
+						height="155px" width="155px" alt=""> <br>
+					<h3>
+						Please rate your experience from <b>1</b> (poor) to <b>5</b>
+						(excellent)
+					</h3>
+					<br> <label>Rate ${ratedUser.firstName}'s
+						Communication</label> 1<input type="radio" value=1 id="comm" name="comm">
+					2<input type="radio" value=2 id="comm" name="comm"> 3<input
+						type="radio" value=3 id="comm" name="comm"> 4<input
+						type="radio" value=4 id="comm" name="comm"> 5<input
+						type="radio" value=5 id="comm" name="comm"><br> <label>Rate
+						the accuracy of the description of your swap.</label> 1<input type="radio"
+						value=1 id="acc" name="acc"> 2<input type="radio" value=2
+						id="acc" name="acc"> 3<input type="radio" value=3 id="acc"
+						name="acc"> 4<input type="radio" value=4 id="acc"
+						name="acc"> 5<input type="radio" value=5 id="acc"
+						name="acc"><br> <label>Give this swap
+						experience an overall rating</label> 1<input type="radio" value=1
+						id="over" name="over"> 2<input type="radio" value=2
+						id="over" name="over"> 3<input type="radio" value=3
+						id="over" name="over"> 4<input type="radio" value=4
+						id="over" name="over"> 5<input type="radio" value=5
+						id="over" name="over"><br>
+					<button type="submit" class="btn btn-primary btn-l page-scroll"
+						style="color: white; background-color: #F05F40;">Rate!</button>
+				</form>
+				<hr>
 			</div>
 		</div>
-	</div>
+	</section>
 	<!-- /.container -->
-
 	<div class="container">
-
-		<hr>
 
 		<!-- Footer -->
 		<footer>
@@ -133,16 +144,11 @@
 				</div>
 			</div>
 		</footer>
-
 	</div>
 	<!-- /.container -->
-
 	<!-- jQuery -->
 	<script src="js/jquery.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
-
 </body>
-
 </html>

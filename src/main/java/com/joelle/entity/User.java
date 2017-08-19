@@ -34,7 +34,7 @@ public class User {
 	private int swaPointsBalance;
 	
 	@Column(name="rating")
-	private double rating;
+	private ArrayList<Double> rating;
 	
 	//How to map to these?
 	@Transient
@@ -113,13 +113,14 @@ public class User {
 		this.swaPointsBalance = swaPointsBalance;
 	}
 
-
-	public double getRating() {
+	public ArrayList<Double> getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(ArrayList<Double> rating) {
 		this.rating = rating;
 	}
+
+
 
 }

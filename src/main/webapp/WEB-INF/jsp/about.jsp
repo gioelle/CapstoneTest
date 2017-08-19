@@ -80,7 +80,7 @@
 			<div class="header-content-inner">
 				<h1 id="homeHeading">SwaProcity</h1>
 				<hr>
-				<h3 style="font-style: oblique; color: #09b893; font-size: 25px">
+				<h3 style="font-style: oblique; font-weight:bold; color: #09b893; font-size: 25px">
 					Invest in <span style="color: yellow; font-size: 35px">[
 						YOUR COMMUNITY ]</span> Invests in You
 				</h3>
