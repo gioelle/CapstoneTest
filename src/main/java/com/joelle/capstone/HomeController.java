@@ -97,13 +97,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/rate", method=RequestMethod.GET)
-	public String rateButtonHandler(Model model, @RequestParam("ratedUser")String email, HttpSession session) {
-		User userToRate = personService.findByEmail(email);
-		model.addAttribute("ratedUser", userToRate);
-		return "rating";
-	}
-	
 	private void getPosts(Model model, String email) {
 		ArrayList<Posting> posts = personService.getUsersPosts(email);		
 		model.addAttribute("myUserPost", posts);
