@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.io.FileUtils;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,10 +63,8 @@ public class HomeController {
 				String uploadPath = basePath+"\\"+userLogin.getEmail()+"\\"+fileName;
 				String profilePath = "/img/" + userLogin.getEmail() + "/" + fileName;
 				File fileToUpload = new File(uploadPath);
-				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
-
-				System.out.println("Profile Pic path:  "+profilePath);
-				userLogin.setProfilePic(profilePath);
+		//		FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
+				userLogin.setProfilePic(BlobProxy.generateProxy(file.getBytes()));
 				personService.save2(userLogin);
 				session.setAttribute("loggedInUser", userLogin);
 				

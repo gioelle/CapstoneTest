@@ -1,6 +1,7 @@
 package com.joelle.entity;
 
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 
 @Entity
 @Table(name="user")
@@ -28,7 +30,7 @@ public class User {
 	private String password;
 	
 	@Column(name="profile_pic")
-	private String profilePic; 
+	private Blob profilePic; 
 	
 	@Column(name="swaPointsBalance")
 	private int swaPointsBalance;
@@ -97,11 +99,12 @@ public class User {
 		this.address = address;
 	}
 
-	public String getProfilePic() {
+
+	public Blob getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(String profilePic) {
+	public void setProfilePic(Blob profilePic) {
 		this.profilePic = profilePic;
 	}
 
