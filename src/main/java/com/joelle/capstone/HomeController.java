@@ -64,9 +64,10 @@ public class HomeController {
 				File fileToUpload = new File(uploadPath);
 				FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
 
-				userLogin.setProfilePic(profilePath);
+				userLogin.setProfilePic(file.getBytes());
 				personService.save2(userLogin);
 				session.setAttribute("loggedInUser", userLogin);
+				
 				
 			}
 			getPosts(model, userLogin.getEmail());

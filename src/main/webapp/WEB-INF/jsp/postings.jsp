@@ -48,38 +48,35 @@
 </head>
 
 <body>
-
-	<!-- Navigation -->
-	<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top"
-		role="navigation" style="background-color: #002f34">
-		<div class="container">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-
-					<!-- <img src=".//resources/postings/img/Reciprocity.jpg" style="width:15%"> -->
-					<br> <span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> Menu <i
+						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="#">SwaProcity Postings</a>
+				<a class="navbar-brand page-scroll" href="#page-top">SwaProcity Postings</a>
 
 			</div>
+
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1" style="float: right;">
-				<ul class="nav navbar-nav">
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
 					<li><a href="home">Profile Home</a>
 					<li><a href="about">About</a></li>
 					<li><a href="logout">Log Out</a></li>
+					
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container -->
+		<!-- /.container-fluid -->
 	</nav>
+
+			<!-- Brand and toggle get grouped for better mobile display -->
 
 	<!-- Page Content -->
 	<div class="container">
@@ -137,8 +134,7 @@
 													value="${post.description}" /></span>
 										</p>
 										<p>
-											<br> <img src="${post.picture}" height="100%"
-												width="100%" alt="Post Image">
+											<br><img src="data:image/jpg;base64,${post.showPicture()}" height="100%" width="100%" alt="Post Image">
 										</p>
 										<p>
 											SwaPoints: <span style="font-weight: bold"><c:out

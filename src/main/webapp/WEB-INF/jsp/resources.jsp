@@ -104,12 +104,7 @@
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Regional Recycling Centers</h2>
 					<hr class="light">
-					<p class="text-faded">Here's a helpful video to help you
-						understand why consuming fewer new goods might be a good idea. No
-						time to watch? Our consumerism is hurting the planet, and we only
-						get one. That's why I hope you'll start sharing your unwanted
-						items, reusable resources, and bartering for services within your
-						community.</p>
+					<p class="text-faded"></p>
 					<div style="position: relative; height: 0; padding-bottom: 56.25%">
 						<iframe width="560" height="315"
 							src="https://www.youtube.com/embed/jobDjAb2VPM" frameborder="0"
@@ -130,11 +125,11 @@
 							</div>
 
 							<div class="item">
-								<img src="chicago.jpg" alt="Chicago">
+								<a href="https://www.como.gov/PublicWorks/Solidwaste/recycling.php"><img src="/static/home/img/como.jpg" alt="City of Columbia"></a>
 							</div>
 
 							<div class="item">
-								<img src="ny.jpg" alt="New York">
+								<a href="http://www.advantagerecycling.com/locations/columbia/"><img src="/static/home/img/AMRlogo1.png" alt="New York"></a>
 							</div>
 						</div>
 

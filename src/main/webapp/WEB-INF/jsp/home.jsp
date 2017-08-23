@@ -79,9 +79,10 @@
 	<header>
 		<div class="header-content">
 			<div class="header-content-inner">
-				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
-				<img src="${userLogin.profilePic}" class="img-circle" height="155px"
-					width="155px" alt=""> <br>
+				<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1><br>
+				<img src="data:image/jpg;base64,${userLogin.showPicture()}"
+					class="img-circle" height="155px" width="155px" alt="Avatar">
+				<br>
 				<form action="uploadProfile" method="POST"
 					enctype="multipart/form-data">
 
@@ -101,12 +102,10 @@
 					<b>How would you like to invest in your community today?</b>
 				</h3>
 				<a href="#post" class="btn btn-primary btn-l page-scroll">New
-					post!</a> <br> <br>
+					post</a> <br> <br>
 				<form class="search--search-home" action="search" method="POST">
-					<!-- <input type="search" name="term" value="" autocomplete="off"
-						class="js-term" placeholder="Search Postings" /> <br> <br>-->
-					<button type="submit" class="btn btn-primary btn-l page-scroll">Search
-						Posts!</button>
+					<button type="submit" class="btn btn-primary btn-l page-scroll">Browse
+						Posts</button>
 				</form>
 
 			</div>
@@ -160,7 +159,7 @@
 					<h2 class="section-heading">Recent Transactions</h2>
 					<hr class="primary">
 
-				</div>	
+				</div>
 				<div class="col-lg-3 col-md-6 text-center" style="width: 10%">
 					<div class="service-box">
 						<i class="fa fa-4x fa-diamond text-primary sr-icons"></i><br>
@@ -206,7 +205,8 @@
 														<c:out value="${trans.buyingUser}"></c:out>
 													</c:if></td>
 												<td>
-												<button type="submit" name="rate" class="btn btn-primary btn-l page-scroll">Rate
+													<button type="submit" name="rate"
+														class="btn btn-primary btn-l page-scroll">Rate
 														it!</button>
 											</tr>
 										</form>
@@ -312,9 +312,8 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Let's Get In Touch!</h2>
-					<img src="static/home/img/Reciprocity.jpg"
-						class="img-responsive" style="max-width: 75%; margin: auto"
-						alt="SwaProcity Logo">
+					<img src="index/img/Reciprocity.jpg" class="img-responsive"
+						style="max-width: 75%; margin: auto" alt="SwaProcity Logo">
 					<hr class="primary">
 					<p>Have questions, suggestions, or requests?</p>
 				</div>

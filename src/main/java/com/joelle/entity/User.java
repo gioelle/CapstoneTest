@@ -2,6 +2,8 @@ package com.joelle.entity;
 
 
 import java.util.ArrayList;
+import java.util.Base64;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,7 +30,7 @@ public class User {
 	private String password;
 	
 	@Column(name="profile_pic")
-	private String profilePic; 
+	private byte[] profilePic; 
 	
 	@Column(name="swaPointsBalance")
 	private int swaPointsBalance;
@@ -57,6 +59,16 @@ public class User {
 	}
 	
 
+	
+	public String showPicture(){
+	    String encoded = "";
+	    if(profilePic != null && profilePic.length>0){
+
+	            encoded = Base64.getEncoder().encodeToString(profilePic);
+	      }
+	     return encoded;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -97,11 +109,11 @@ public class User {
 		this.address = address;
 	}
 
-	public String getProfilePic() {
+	public byte[] getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(String profilePic) {
+	public void setProfilePic(byte[] profilePic) {
 		this.profilePic = profilePic;
 	}
 

@@ -49,7 +49,7 @@ public class PostingController {
 					File fileToUpload = new File(uploadPath);
 					FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
 					// TODO fix this too (both lines)
-					posting.setPicture(path);
+					posting.setPicture(file.getBytes());
 
 				} catch (Exception e) {
 

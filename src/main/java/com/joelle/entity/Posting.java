@@ -1,6 +1,7 @@
 package com.joelle.entity;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class Posting {
 	@Column(name="instances")
 	private int instances;
 	@Column(name="picture")
-	private String picture;
+	private byte[] picture;
 	
 	@OneToOne
 	@JoinColumn(name="email", insertable=false, updatable=false)
@@ -51,6 +52,16 @@ public class Posting {
 	//default constructor
 	public Posting () {}
 	
+	public String showPicture(){
+	    String encoded = "";
+	    if(picture != null && picture.length>0){
+
+	            encoded = Base64.getEncoder().encodeToString(picture);
+	      }
+	     return encoded;
+	}
+
+	
 	
 	public User getUser() {
 		return user;
@@ -62,12 +73,12 @@ public class Posting {
 	}
 
 
-	public String getPicture() {
+	public byte[] getPicture() {
 		return picture;
 	}
 
 
-	public void setPicture(String picture) {
+	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
 
