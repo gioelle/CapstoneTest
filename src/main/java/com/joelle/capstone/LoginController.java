@@ -86,10 +86,6 @@ public class LoginController {
 			return "about";
 		} else {
 			ArrayList<Posting> posts = personService.getUsersPosts(userLogin.getEmail());		
-			System.out.println("size of record: " + posts.size());
-			for (Posting posting : posts) {
-				System.out.println(posting.getType());
-			}
 			model.addAttribute("myUserPost", posts);
     		model.addAttribute("newPost", new Posting());
     		getTransactions(model, userLogin.getEmail());

@@ -147,7 +147,7 @@
 													value="${post.user.firstName}" /></span>
 										</p>
 										User rating: <span style="font-weight: bold"><c:out
-												value="${post.user.rating}" /></span> <br> <br>
+												value="${post.user.getRating(user.count, user.rawRatingPoints)}" /></span> <br> <br>
 									</div>
 								</div>
 							</div>

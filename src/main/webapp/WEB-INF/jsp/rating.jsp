@@ -57,24 +57,32 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script>
-function calculateAverage(){
-var rat0 = document.getElementsByName("comm");
-var rat1 = document.getElementsByName("over");
-var commRating = 0;
-var avgRating;
+	function calculateAverage() {
+		var rat0 = document.getElementsByName("comm");
+		var rat1 = document.getElementsByName("over");
+		var commRating = 0;
+		var overRating = 0;
+		var avgRating = 0;
 
-for(var i = 0; i < rat0.length; i++) {
-   if(rat0[i].checked)
-       commRating += rat0[i].value;
- }
-for(var i = 0; i < rat1.length; i++) {
-	   if(rat1[i].checked)
-	       commRating += rat1[i].value;
-	 }
+		for (var i = 0; i < rat0.length; i++) {
+			if (rat0[i].checked)
+				commRating += rat0[i].value;
+		}
+		
+		for (var i = 0; i < rat1.length; i++) {
+			if (rat1[i].checked)
+				overRating += rat1[i].value;
+		}
+		
+		console.log(commRating);
+		console.log(overRating);
 
-avgRating=commRating/2;
-document.getElementsById("avgRating").value=avgRating;
-}
+		avgRating += commRating / 2;
+		avgRating += overRating / 2;
+		console.log(avgRating);
+		return document.getElementById('avgRating').innerHTML = avgRating;
+
+	}
 </script>
 
 </head>
@@ -82,7 +90,7 @@ document.getElementsById("avgRating").value=avgRating;
 <body>
 
 	<!-- Navigation -->
-		<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -115,31 +123,33 @@ document.getElementsById("avgRating").value=avgRating;
 	<section class="header-content-inner" style="text-align: center">
 		<div class="header-content" style="color: white">
 			<div class="header-content-inner">
-				<form class = header-content-inner method="get" action="rateUser">
+				<form class=header-content-inner method="POST" action="rateUser">
 					<h1 id="homeHeading">Hello, ${userLogin.firstName}!</h1>
 					<h2>Thank you for rating your experience swapping with
 						${ratedUser.firstName}.</h2>
-					<img src="data:image/jpg;base64,${ratedUser.showPicture()}" class="img-circle" height="155px" width="155px" alt="SwapUser Pic">
+					<img src="data:image/jpg;base64,${ratedUser.showPicture()}"
+						class="img-circle" height="155px" width="155px" alt="SwapUser Pic">
 					<br>
 					<h3>
-						Please rate your experience: <br>
-						<b>1</b> (poor) to <b>5</b>	(excellent)
-					</h3>	
+						Please rate your experience: <br> <b>1</b> (poor) to <b>5</b>
+						(excellent)
+					</h3>
 					<h3>
-					<br> <label>${ratedUser.firstName}'s
-						Communication</label> 1<input type="radio" value=1 id="comm" name="comm">
-					2<input type="radio" value=2 id="comm" name="comm"> 3<input
-						type="radio" value=3 id="comm" name="comm"> 4<input
-						type="radio" value=4 id="comm" name="comm"> 5<input
-						type="radio" value=5 id="comm" name="comm"><br> <label>Overall swap rating</label> 1<input type="radio" value=1
-						id="over" name="over"> 2<input type="radio" value=2
-						id="over" name="over"> 3<input type="radio" value=3
-						id="over" name="over"> 4<input type="radio" value=4
-						id="over" name="over"> 5<input type="radio" value=5
-						id="over" name="over"><br>
-						<input type="hidden" value="avgRating" id="avgRating" placeholder=avgRating>
-						</h3>
-					<button type="submit" onclick="calculateAverage()" class="btn btn-primary btn-l page-scroll"
+						<br> <label>${ratedUser.firstName}'s Communication</label> 
+							1<input	onClick="calculateAverage()" type="radio" value=1 id="comm"	name="comm"> 
+							2<input onClick="calculateAverage()" type="radio" value=2 id="comm" name="comm"> 
+							3<input onClick="calculateAverage()" type="radio" value=3 id="comm"	name="comm"> 
+							4<input onClick="calculateAverage()" type="radio" value=4 id="comm" name="comm"> 
+							5<input	onClick="calculateAverage()" type="radio" value=5 id="comm"	name="comm">
+							<br> <label>Overall swap rating</label>
+							1<input onClick="calculateAverage()" type="radio" value=1 id="over" name="over"> 
+							2<input onClick="calculateAverage()" type="radio" value=2 id="over" name="over"> 
+							3<input onClick="calculateAverage()" type="radio" value=3 id="over" name="over"> 
+							4<input onClick="calculateAverage()" type="radio" value=4 id="over" name="over"> 
+							5<input	onClick="calculateAverage()" type="radio" value=5 id="over"	name="over">
+							<br> <input type="hidden" name="avgRating" value=avgRating id="avgRating">
+					</h3>
+					<button type="submit" value=avgRating class="btn btn-primary btn-l page-scroll"
 						style="color: white; background-color: #F05F40">Rate!</button>
 				</form>
 				<hr>

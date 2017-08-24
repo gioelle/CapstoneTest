@@ -1,15 +1,11 @@
 package com.joelle.entity;
 
 
-import java.util.ArrayList;
 import java.util.Base64;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -36,13 +32,18 @@ public class User {
 	private int swaPointsBalance;
 	
 	@Column(name="rating")
-	private ArrayList<Double> rating;
+	private Double rating;
+	
+	@Column(name="transaction_count")
+	private int count;
+	
+	@Transient
+	private double avgRating;
 	
 	//How to map to these?
 	@Transient
 	private Address address;
 	
-
 	//default constructor
 	public User() {
 		address = new Address();
@@ -67,6 +68,11 @@ public class User {
 	            encoded = Base64.getEncoder().encodeToString(profilePic);
 	      }
 	     return encoded;
+	}
+	
+	public Double getRating(int count, double rating) {
+		avgRating = rating/count;
+		return avgRating;
 	}
 	
 	public String getFirstName() {
@@ -125,13 +131,31 @@ public class User {
 		this.swaPointsBalance = swaPointsBalance;
 	}
 
-	public ArrayList<Double> getRating() {
+
+	public double getAvgRating() {
+		return avgRating;
+	}
+
+	public void setAvgRating(double avgRating) {
+		this.avgRating = avgRating;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public Double getRating() {
 		return rating;
 	}
 
-	public void setRating(ArrayList<Double> rating) {
+	public void setRating(Double rating) {
 		this.rating = rating;
 	}
+
 
 
 
