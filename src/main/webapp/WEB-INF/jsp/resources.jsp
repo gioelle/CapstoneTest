@@ -55,20 +55,19 @@
 					<span class="sr-only">Toggle navigation</span> Menu <i
 						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand page-scroll" href="about">SwaProcity Home</a>
+				<a class="navbar-brand page-scroll" href="#page-top">SwaProcity Resources</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="page-scroll" href="#centers">Recycling
-							Centers</a></li>
+					<li><a class="page-scroll" href="#centers">Recycling</a></li>
 					<li><a class="page-scroll" href="#thrift">Thrift &
 							Upcycling</a></li>
 					<li><a class="page-scroll" href="#points">SwaPoints FAQ</a></li>
-					<li><a class="page-scroll" href="about">Register</a></li>
-					<li><a class="page-scroll" href="#contact">Contact</a></li>
+			<!-- 	<li><a class="page-scroll" href="#contact">Contact</a></li> -->	
+					<li><a class="page-scroll" href="about">SwaProcity Home</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -87,8 +86,7 @@
 						YOUR COMMUNITY ]</span> Invests in You
 				</h3>
 				<br> <a href="#centers"
-					class="btn btn-primary btn-xl page-scroll">Find Local Recycling
-					Centers</a><br>
+					class="btn btn-primary btn-xl page-scroll">Local Recycling Info</a><br>
 				<br> <a href="#thrift"
 					class="btn btn-primary btn-xl page-scroll">Thrift & Upcycling</a><br>
 				<br> <a href="#points"
@@ -102,48 +100,33 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
-					<h2 class="section-heading">Regional Recycling Centers</h2>
+					<h1 class="section-heading">Boone County Recycling</h1>
 					<hr class="light">
-					<p class="text-faded"></p>
-					<div style="position: relative; height: 0; padding-bottom: 56.25%">
+					<a href="https://www.como.gov/PublicWorks/Solidwaste/recycling.php"><i
+						style="color: white"
+						class="fa fa-4x fa-recycle text-primary sr-icons"></i> </a>
+					<p class="text-faded">Click to learn more about your local
+						guidelines.</p>
+					<div style="position: relative; height: 0; padding-bottom: 45%">
 						<iframe width="560" height="315"
 							src="https://www.youtube.com/embed/jobDjAb2VPM" frameborder="0"
 							allowfullscreen></iframe>
 					</div>
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
-
-						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="item active">
-								<a href="http://www.midmorecycling.com"><img src="/static/home/img/midmo.png" alt="Mid Mo Recycling"></a>
-							</div>
-
-							<div class="item">
-								<a href="https://www.como.gov/PublicWorks/Solidwaste/recycling.php"><img src="/static/home/img/como.jpg" alt="City of Columbia"></a>
-							</div>
-
-							<div class="item">
-								<a href="http://www.advantagerecycling.com/locations/columbia/"><img src="/static/home/img/AMRlogo1.png" alt="New York"></a>
-							</div>
-						</div>
-
-						<!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel"
-							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel"
-							data-slide="next"> <span
-							class="glyphicon glyphicon-chevron-right"></span> <span
-							class="sr-only">Next</span>
-						</a>
-					</div>
+					<a
+						href="https://www.como.gov/PublicWorks/Solidwaste/what-cannot-be-recycled.php"><i
+						style="color: white"
+						class="fa fa-4x fa-trash text-primary sr-icons"></i> </a>
+					<p class="text-faded">
+						Some things can't be recycled here. (click <i style="color: white"
+							class="fa fa-1x fa-trash-o text-primary sr-icons"></i> above to
+						learn more) <br>We recommend upcycling those items if you
+						can't avoid purchasing them altogether. <br>In fact, that's
+						what we're all about. <br>Log in or join up, and post your
+						upcyclables to SwaProcity!
+					</p>
+					<a href="about"
+						class="page-scroll btn btn-default btn-xl sr-button">Get
+						Started!</a>
 				</div>
 			</div>
 		</div>
@@ -153,10 +136,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 text-center">
-					<h2 class="section-heading">What is SwaProcity?</h2>
-					<p class="text-muted">SwaProcity is a virtual currency for
-						local barter of items, services, and resources. It is what you
-						make it.</p>
+					<h1 class="section-heading">Thrift & Upcycling</h1>
+					<p class="text-muted">Local resources for buying, selling or
+						donating reusable goods and materials</p>
 					<hr class="primary">
 				</div>
 			</div>
@@ -165,110 +147,111 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="service-box">
-						<i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-						<h3>Coal to Diamonds</h3>
-						<p class="text-muted">One woman's trash is another woman's
-							treasure.</p>
+						<a
+							href="https://www.cardonationwizard.com/kbia/info/car-donation-columbia-mo.html"><i
+							class="fa fa-4x fa-automobile text-primary sr-icons"></i></a>
+						<h3>KBIA - Turn your Car into NPR</h3>
+						<p class="text-muted" style="text-align: justify">Your gift
+							makes a difference at KBIA! In addition to supporting the
+							programs you love, your gift will make you a member of KBIA. Your
+							vehicle is towed free of charge, and the donation is eligible for
+							a tax deduction. KBIA accepts any vehicle - running or not -
+							including cars, trucks, boats, RVs, motorcycles, and more. They
+							work with their public radio colleagues at Car Talk Vehicle
+							Donation Services, to ensure that your donation delivers the
+							highest possible revenue to KBIA and that your experience is
+							convenient, efficient and even fun.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="service-box">
-						<i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-						<h3>Borrow an Airplane</h3>
-						<p class="text-muted">Need an air compressor? Monkey wrench?
-							Food dehydrator? Borrow costly resources you might only use once,
-							and share those things you already invested in.</p>
+						<a href="http://www.showmehabitat.org/restore"><i
+							class="fa fa-4x fa-home text-primary sr-icons"></i></a>
+						<h3>Habitat for Humanity Restore</h3>
+						<p class="text-muted" style="text-align: justify">The Restore
+							is a division of Show-Me Central Habitat for Humanity - a
+							non-profit economical organization dedicated to eliminating
+							poverty housing. We recycle used, overstocked, discontinued,
+							seconds and salvageable building material donated by individuals,
+							firms and contractors. The donated items are used to build houses
+							for low-income families or offered for sale to the general public
+							to raise funds for building houses.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 text-center"
+					style="text-align: justify">
+					<div class="service-box">
+						<a href="http://www.onceuponachildcomo.com/"><i
+							class="fa fa-4x fa-child text-primary sr-icons"></i></a>
+						<h3>Once Upon a Child</h3>
+						<p class="text-muted" style="text-align: justify">A store that
+							strives to offer a fun and convenient way to sell your gently
+							used items. Whether you’re buying or selling, they would love to
+							help you find what you’re looking for. They offer payment
+							on-the-spot for items we select that meet current style, safety
+							and condition standards. We maintain high merchandise standards
+							by thoroughly inspecting all toys and equipment for any safety
+							recalls.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6 text-center">
 					<div class="service-box">
-						<i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-						<h3>Your Neighborhood is Talented</h3>
-						<p class="text-muted">Your neighbor's skill set compliments
-							your own, get their help on that new firepit or help them put a
-							new roof on.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 text-center">
-					<div class="service-box">
-						<i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-						<h3>SwaProcity Community</h3>
-						<p class="text-muted">Build relationships while working toward
-							a greener earth and keeping dollars local.</p>
+						<a href="http://www.midmorecycling.com/"><i
+							class="fa fa-4x fa-laptop text-primary sr-icons"></i></a>
+						<h3>Mid-Mo Recycling</h3>
+						<p class="text-muted" style="text-align: justify">Mid-MO
+							Recycling specializes in recycling out of date or inoperable
+							electronics equipment including computers, monitors, keyboards,
+							fax machines, mice, printers, telephone systems, main frame
+							computer boards, wire and aluminum. Materials from your
+							electronics equipment are processed in their facility and sent
+							out to be re-used in a new product. This process helps avoid
+							landfill dumping and it allows for responsible resource
+							management.</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<section id="points" class="bg-dark">
 		<aside class="bg-dark">
-			<div class="container text-center">
-				<div class="call-to-action">
-					<form class="container" action="login" method="post"
-						modelAttribute="userLogin" style="width: 20%">
-						<h3>Welcome Back!</h3>
-						<span style="color: red"><c:out value=""></c:out></span>
-						<div class="form-group">
-							<label path="email">Email</label> <input path="email"
-								class="form-control" name="userName" id="username"
-								placeholder="email"></input>
-						</div>
-						<div class="form-group">
-							<label path="password">Top-Secret Unsharable KeyPhrase
-								here:</label> <input path="password" type="password"
-								class="form-control" name="password" id="password"
-								placeholder="password"></input>
-						</div>
-						<button type="submit" class="btn btn-default">To my
-							account!</button>
-						<!--  <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-sm sr-button"><button type="submit" class="btn btn-default"></button></a> -->
-					</form>
-				</div>
-				<br> <br> <br>
-				<div class="container text-center">
-					<form class="container" action="register" method="post"
-						modelAttribute="userLogin" style="width: 40%">
-						<h3>Not yet in the club? Sign up here!</h3>
-						<div class="form-group">
-							<label path="firstName">First Name</label> <input
-								path="firstName" type="text" class="form-control"
-								name="firstName" id="firstName" placeholder="Jane"></input>
-						</div>
-						<div class="form-group">
-							<label path="lastName">Last Name</label> <input path="lastName"
-								type="text" class="form-control" name="lastName" id="lastName"
-								placeholder="Doe"></input>
-						</div>
-						<div class="form-group">
-							<label path="email">Email</label> <input path="email"
-								type="email" class="form-control" name="username" id="email"
-								placeholder="janeDoe@camelCase.com"></input>
-						</div>
+			<div class="container" style="text-align: center">
+				<div class="row">
 
-						<div class="form-group">
-							<label path="password">Password</label> <input path="password"
-								type="password" class="form-control" name="password"
-								id="password" placeholder="s0m3t#ingComp!ex&un1que"></input>
-						</div>
+					<h1 class="section-heading">SwaPoints - What's the point, and
+						why "SwaProcity"?</h1>
+					<i style="color: white"
+						class="fa fa-5x fa-money text-primary sr-icons"></i>
+					<p class="text-faded">
+						<b>SwaProcity is based on the <i>Reciprocity</i> exchanged
+							when a community comes together to <i>Swap</i> goods, services,
+							and resources.
+						</b> Every user starts with zero swap points. Points are earned when
+						other users "purchase" the goods, services, and resources you have
+						hosted on SwaProcity. They spend points to make those "purchases".
+					</p>
+					<p class="text-faded">
+						<b>Negative points? Negative problemo.</b> Points are meant to
+						encourage participation on SwaProcity. Negative points means you
+						helped someone avoid throwing their excess items into a landfill
+						and keep resources available locally.
+					</p>
+					<p class="text-faded">
+						<b>What do I have to offer?</b> Think of SwaProcity before your
+						next trip to donate to your local thrift store giant (they usually
+						ship that stuff to headquarters for sorting, and redistribution
+						anyway). Have a particular skill? Great! Let others know you can
+						provide services to them. Remember that food dehydrator you had to
+						have and have only used once but still want to keep it for tomato
+						season? List it as a resource that others can use and return.
+					</p>
 
-						<div class="form-group">
-							<label path="address.streetAddress">Street Address</label> <input
-								path="address.streetAddress" type="text" class="form-control"
-								name="streetAddress" id="streetAddress"
-								placeholder="123 Rebel Avenue"></input>
-						</div>
-						<div class="checkbox">
-							<label> <input type="checkbox">I agree to the
-								terms and conditions. <br>Terms and Conditions: We'll be
-								thoughtful about how we perform business.
-							</label>
-						</div>
-						<button type="submit" class="btn btn-default">Let's do
-							this.</button>
-					</form>
+					<p>Here's a little video about capitalism.</p>
+						<iframe width="560" height="315"
+						src="https://www.youtube.com/embed/qOP2V_np2c0" frameborder="0"
+						allowfullscreen></iframe>
+					</div>
 				</div>
-			</div>
 		</aside>
 	</section>
 	<section id="contact" style="padding: 50px; background-color: #faf6d0">
