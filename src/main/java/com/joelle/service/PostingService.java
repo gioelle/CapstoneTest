@@ -38,7 +38,6 @@ public class PostingService {
 	
 	@Transactional
 	public void deletePost(String id) {
-		System.out.println("Id = " + id);
 		Long deleteId = Long.parseLong(id);
 		entityManager.createNativeQuery(deleteAPost, Posting.class).setParameter("id", deleteId).executeUpdate();
 	}

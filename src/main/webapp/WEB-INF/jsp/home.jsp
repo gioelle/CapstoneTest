@@ -183,8 +183,9 @@
 										<th style="text-align: center">Value</th>
 										<th style="text-align: center">Selling User</th>
 										<th style="text-align: center">Buying User</th>
+										<th style="text-align: center">Rate it!</th>
 
-									</tr>
+									</tr> 
 									<c:forEach items="${transactions}" var="trans">
 										<form method="GET" action="rate">
 											<tr>
@@ -204,10 +205,16 @@
 														test="${userLogin.email != trans.buyingUser}">
 														<c:out value="${trans.buyingUser}"></c:out>
 													</c:if></td>
-												<td>
+												<td style="text-align: center">
+												<input type="hidden" value="${trans.id}" name="transactionID"></input>
+													<c:if test="${trans.rated == false}">
 													<button type="submit" name="rate"
 														class="btn btn-primary btn-l page-scroll">Rate
 														it!</button>
+													</c:if>
+													<c:if test="${trans.rated == true}">
+													<i class="fa fa-3x fa-check-circle text-primary sr-icons"></i>
+													</c:if>
 											</tr>
 										</form>
 									</c:forEach>

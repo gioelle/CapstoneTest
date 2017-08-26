@@ -33,6 +33,8 @@ public class Transaction {
 	private String type;
 	@Column(name="email")
 	private String email;
+	@Column(name="rated")
+	private boolean rated;
 	
 	//@OneToOne
 	//@JoinColumn(name="email", insertable=false, updatable=false)
@@ -47,6 +49,12 @@ public class Transaction {
 		this.type = type;
 	}
 	
+	public boolean isRated() {
+		return rated;
+	}
+	public void setRated(boolean rated) {
+		this.rated = rated;
+	}
 	
 	public String getType() {
 		return type;
@@ -105,21 +113,6 @@ public class Transaction {
 	public void setBuyingUser(String buyingUser) {
 		this.buyingUser = buyingUser;
 	}
-
-
-//	public User getUser() {
-//		return user;
-//	}
-//
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-//
-//
-//	public String toString() {
-//		return  "*" + date + "," + value + "," + user;
-//	}
 
 	public double getValue() {
 		return value;

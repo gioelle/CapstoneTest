@@ -53,7 +53,6 @@ public class HomeController {
 	@RequestMapping(value="/uploadProfile", method=RequestMethod.POST)
 	public String uploadFileHandler(@RequestParam("file") MultipartFile file, Model model,HttpSession session) {
 		User userLogin = (User) session.getAttribute("userLogin");
-		System.out.println("Uploading Profile Pic....!!!!!"+userLogin.getEmail());
 
 		try {
 			if(!file.isEmpty()) {
@@ -83,7 +82,6 @@ public class HomeController {
 
 	@RequestMapping(value="/about", method=RequestMethod.GET)
 	public String toAbout(Model model, @ModelAttribute("userLogin") User userLogin) {
-		System.out.println("Logged in User: "+userLogin.getEmail());
 		model.addAttribute("userLogin", userLogin);
 		return "about";
 	}

@@ -1,5 +1,7 @@
 package com.joelle.capstone;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
@@ -29,9 +31,12 @@ public class RatingController {
 	private TransactionService transactionService;
 	
 	@RequestMapping(value="/rate", method=RequestMethod.GET)
-	public String rateButtonHandler(Model model, @RequestParam("ratedUser")String email, HttpSession session) {
+	public String rateButtonHandler(Model model, @RequestParam("ratedUser")String email, @RequestParam("transactionID")Long transID, HttpSession session) {
+		System.out.println("Transaction ID: " + transID);
+		Transaction thisTrans = transactionService.findByID(transID);
+		session.setAttribute("thisTrans", thisTrans);
 		User userToRate = personService.findByEmail(email);
-		model.addAttribute("ratedUser", userToRate);
+	//	model.addAttribute("ratedUser", userToRate);
 		session.setAttribute("ratedUser", userToRate);
 		return "rating";
 	}
@@ -39,16 +44,23 @@ public class RatingController {
 	@RequestMapping(value="/rateUser", method=RequestMethod.POST)
 	public String ratingsHandler(Model model, @RequestParam("avgRating") String avgRating, HttpSession session)/**/ {
 		System.out.println("avgRating = "  + avgRating);
+
 		User userToRate = (User) session.getAttribute("ratedUser");
 		userToRate.setCount(userToRate.getCount() + 1);
+		
 		Double rating = Double.parseDouble(avgRating);
 		System.out.println("rating = "  + rating);
 		userToRate.setRating(userToRate.getRating()+rating);
 		personService.save(userToRate);
+		
 		User userLogin = (User) session.getAttribute("userLogin");
 		getPosts(model, userLogin.getEmail());
 		getTransactions(model, userLogin.getEmail());
 		model.addAttribute("newPost", new Posting());
+		
+		Transaction thisTrans = (Transaction)session.getAttribute("thisTrans");
+		thisTrans.setRated(true);
+		transactionService.save2(thisTrans);
 		return "home";
 	}
 	

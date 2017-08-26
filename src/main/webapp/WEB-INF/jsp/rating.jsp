@@ -56,34 +56,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<script>
-	function calculateAverage() {
-		var rat0 = document.getElementsByName("comm");
-		var rat1 = document.getElementsByName("over");
-		var commRating = 0;
-		var overRating = 0;
-		var avgRating = 0;
-
-		for (var i = 0; i < rat0.length; i++) {
-			if (rat0[i].checked)
-				commRating += rat0[i].value;
-		}
-		
-		for (var i = 0; i < rat1.length; i++) {
-			if (rat1[i].checked)
-				overRating += rat1[i].value;
-		}
-		
-		console.log(commRating);
-		console.log(overRating);
-
-		avgRating += commRating / 2;
-		avgRating += overRating / 2;
-		console.log(avgRating);
-		return document.getElementById('avgRating').innerHTML = avgRating;
-
-	}
-</script>
 
 </head>
 
@@ -147,9 +119,10 @@
 							3<input onClick="calculateAverage()" type="radio" value=3 id="over" name="over"> 
 							4<input onClick="calculateAverage()" type="radio" value=4 id="over" name="over"> 
 							5<input	onClick="calculateAverage()" type="radio" value=5 id="over"	name="over">
-							<br> <input type="hidden" name="avgRating" value=avgRating id="avgRating">
+						<br> <input type="text" name="avgRating" id="newWeirdID"> 
+						
 					</h3>
-					<button type="submit" value=avgRating class="btn btn-primary btn-l page-scroll"
+					<button type="submit" class="btn btn-primary btn-l page-scroll"
 						style="color: white; background-color: #F05F40">Rate!</button>
 				</form>
 				<hr>
@@ -172,5 +145,39 @@
 	<script src="js/jquery.js"></script>
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	
+	<script>
+		var avgRating = 0;
+	function calculateAverage() {
+		var rat0 = document.getElementsByName("comm");
+		var rat1 = document.getElementsByName("over");
+		var commRating = 0;
+		var overRating = 0;
+		
+	
+		for (var i = 0; i < rat0.length; i++) {
+			if (rat0[i].checked)
+				commRating += rat0[i].value;
+		}
+		
+		for (var i = 0; i < rat1.length; i++) {
+			if (rat1[i].checked)
+				overRating += rat1[i].value;
+		}
+		
+		console.log(commRating);
+		console.log(overRating);
+
+		avgRating += (commRating / 2);
+		avgRating += (overRating / 2);
+		
+		console.log(avgRating);
+		document.getElementById("newWeirdID").value = avgRating;
+		console.log("html value = " + document.getElementById("newWeirdID").value);
+//		return document.getElementById('avgRating').innerHTML;
+
+	}
+</script>
+	
 </body>
 </html>

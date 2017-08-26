@@ -78,7 +78,6 @@ public class PostingController {
 	@RequestMapping(value="/item", method=RequestMethod.GET)
 	public String getItemPosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getItemPosts();
-		System.out.println("Item Posts: "+ posts.size());
 		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
 		model.addAttribute("userLogin", userLogin);
@@ -88,7 +87,6 @@ public class PostingController {
 	@RequestMapping(value="/resource", method=RequestMethod.GET)
 	public String getResourcePosts(Model model, @ModelAttribute("userLogin") User userLogin) {
 		ArrayList<Posting> posts = postingService.getResourcePosts();
-		System.out.println("Resource Posts: "+posts.size());
 		model.addAttribute("postSwap",new Posting());
 		model.addAttribute("post", posts);
 		model.addAttribute("userLogin", userLogin);

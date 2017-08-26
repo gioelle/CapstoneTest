@@ -30,12 +30,8 @@ public class TransactionService {
 	@SuppressWarnings("unchecked")
 	@Transactional
 	public ArrayList<Transaction> getUsersTrans(String email){
-		System.out.println("user email: " + email);
 		ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 		transactions = (ArrayList<Transaction>)entityManager.createNativeQuery(getUserTrans, Transaction.class).setParameter("email", email).getResultList();
-		for (Transaction transaction : transactions) {
-			System.out.println(transaction.getTitle());
-		}
 		return transactions;
 	}
 	
@@ -48,4 +44,10 @@ public class TransactionService {
 	public void save2(Transaction transaction) {
 		this.transRepository.save(transaction);
 	}
+	
+	@Transactional
+	public Transaction findByID(Long transID){
+		return (Transaction) transRepository.findOne(transID);
+	}
+	
 }
